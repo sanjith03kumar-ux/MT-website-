@@ -5,6 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mama Roma – Authentic Italian Cuisine | Mount Lavinia, Colombo</title>
 <meta name="description" content="Premium authentic Italian cuisine at Mama Roma, Mount Lavinia, Colombo.">
+<link rel="canonical" href="https://www.mamaroma.lk/">
+
+<!-- ============================================================
+     SECURITY HEADERS THAT CAN BE SET VIA <meta> (best-effort only)
+     NOTE: X-Frame-Options, X-Content-Type-Options, HSTS,
+     Permissions-Policy and the Cross-Origin-* headers CANNOT be
+     reliably set via <meta> — browsers require them as real HTTP
+     response headers. See the server-config snippets provided
+     alongside this file (.htaccess / nginx.conf / _headers /
+     vercel.json) to enable those. This meta CSP + referrer policy
+     are the two that *do* work when placed in HTML.
+     ============================================================ -->
+<!-- NOTE: 'frame-ancestors' is deliberately left out of this <meta> version —
+     browsers ignore that directive when CSP is delivered via <meta> and will
+     print a console warning if it's included. It IS included in the real
+     HTTP-header versions of this policy (.htaccess / nginx / _headers /
+     vercel.json), which is the only place it actually works. -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  base-uri 'self';
+  object-src 'none';
+  form-action 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://cdnjs.cloudflare.com https://www.google.com https://www.gstatic.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+  font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
+  img-src 'self' data: https:;
+  media-src 'self' data:;
+  connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.gstatic.com https://firestore.googleapis.com https://firebase.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com;
+  frame-src 'self' https://www.google.com https://www.youtube.com https://www.facebook.com https://www.instagram.com https://www.tiktok.com;
+">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<!-- Open Graph / social sharing tags -->
+<meta property="og:type" content="restaurant.restaurant">
+<meta property="og:site_name" content="Mama Roma">
+<meta property="og:title" content="Mama Roma – Authentic Italian Cuisine | Mount Lavinia, Colombo">
+<meta property="og:description" content="Premium authentic Italian cuisine at Mama Roma, Mount Lavinia, Colombo. Wood-fired pizza, handmade pasta and a rooftop dining experience.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.mamaroma.lk/">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter card tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mama Roma – Authentic Italian Cuisine | Mount Lavinia, Colombo">
+<meta name="twitter:description" content="Premium authentic Italian cuisine at Mama Roma, Mount Lavinia, Colombo. Wood-fired pizza, handmade pasta and a rooftop dining experience.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80">
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTHXCG20WE"></script>
 <script>
@@ -3078,7 +3127,10 @@ try{
   // Some networks/firewalls/antivirus silently block Firestore's normal streaming
   // connection, which makes writes hang forever with no error at all. Forcing
   // long-polling avoids that — it's the standard fix for a stuck "Submitting..." button.
-  fbDb.settings({experimentalForceLongPolling:true, merge:true});
+  // NOTE: experimentalAutoDetectLongPolling defaults to true in current SDKs, and it's
+  // mutually exclusive with experimentalForceLongPolling — it must be explicitly
+  // disabled here or Firestore throws "cannot be used together" and refuses to init.
+  fbDb.settings({experimentalForceLongPolling:true, experimentalAutoDetectLongPolling:false, merge:true});
 }catch(e){
   console.error('Firebase failed to initialize. Update firebaseConfig with your real project keys.', e);
 }
@@ -3431,4 +3483,3 @@ document.addEventListener('keydown',function(e){
 </script>
 </body>
 </html>
->>>>>>> 51aa700e994c861aaedd98b284a980408d1900e2
