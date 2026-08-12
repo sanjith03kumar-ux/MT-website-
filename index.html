@@ -749,6 +749,7 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .menu-card.is-touched::before{opacity:1;}
 .menu-card-img{width:100%;height:210px;object-fit:cover;transition:transform .5s ease;}
 .menu-card:hover .menu-card-img{transform:scale(1.04);}
+video.menu-card-img{display:block;background:#000;}
 .menu-card-body{padding:20px;}
 .menu-card-cat{font-size:.63rem;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
 .menu-card-name{font-family:var(--font-h);font-weight:700;font-size:1.05rem;color:var(--cream);margin-bottom:8px;}
@@ -787,7 +788,7 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   border-radius:22px 22px 0 0;
   background:#000;
 }
-.dish-modal-media img{
+.dish-modal-media img,.dish-modal-media video{
   position:absolute;top:50%;left:50%;
   width:100%;height:100%;object-fit:cover;
   transform:translate(-50%,-50%) scale(1);
@@ -2024,7 +2025,7 @@ h1, h2, h3, h4, h5, h6,
     </div>
     <div class="menu-grid" id="menuGrid">
       <div class="menu-card reveal" data-cat="pizza" onclick="openDishModal(this)">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/ce/a7/e2/queue-up-for-the-bake.jpg?w=900&h=500&s=1" alt="Margherita" class="menu-card-img" loading="lazy">
+        <video class="menu-card-img" src="image/pizza-menu-video.mp4" poster="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/ce/a7/e2/queue-up-for-the-bake.jpg?w=900&h=500&s=1" autoplay muted loop playsinline preload="metadata"></video>
         <div class="menu-card-body">
           <div class="menu-card-cat">Pizza</div>
           <div class="menu-card-name">Margherita</div>
@@ -3438,6 +3439,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <button class="dish-modal-close" onclick="closeDishModal()" aria-label="Close"><i class="fas fa-times"></i></button>
     <div class="dish-modal-media">
       <img id="dishModalImg" src="" alt="">
+      <video id="dishModalVideo" muted loop playsinline autoplay style="display:none"></video>
       <div class="dish-modal-shine"></div>
       <div class="dish-modal-steam"><span></span><span></span><span></span><span></span><span></span></div>
       <div class="dish-modal-badge"><i class="fas fa-circle"></i> Live</div>
@@ -3453,26 +3455,41 @@ document.addEventListener('DOMContentLoaded', function(){
 <script>
 function openDishModal(cardEl){
 
-  var img=cardEl.querySelector('.menu-card-img, .drink-card-img');
+  var media=cardEl.querySelector('.menu-card-img, .drink-card-img');
   var nameEl=cardEl.querySelector('.menu-card-name, .drink-card-name');
   var descEl=cardEl.querySelector('.menu-card-desc, .drink-card-desc');
   var catEl=cardEl.querySelector('.menu-card-cat, .drink-card-type');
   var modal=document.getElementById('dishModal');
   var modalImg=document.getElementById('dishModalImg');
-  if(img){modalImg.src=img.src;modalImg.alt=img.alt||'';}
+  var modalVideo=document.getElementById('dishModalVideo');
+  var isVideo=media&&media.tagName==='VIDEO';
+  if(isVideo){
+    modalVideo.src=media.currentSrc||media.src;
+    modalVideo.style.display='block';
+    modalImg.style.display='none';
+    modalVideo.currentTime=0;
+    modalVideo.play();
+  }else{
+    if(media){modalImg.src=media.src;modalImg.alt=media.alt||'';}
+    modalImg.style.display='block';
+    modalVideo.style.display='none';
+    modalVideo.pause();
+    // restart the "live motion" animation fresh each time it's opened
+    modalImg.style.animation='none';
+    void modalImg.offsetWidth;
+    modalImg.style.animation='';
+  }
   document.getElementById('dishModalName').textContent=nameEl?nameEl.textContent:'';
   document.getElementById('dishModalDesc').textContent=descEl?descEl.textContent:'';
   document.getElementById('dishModalCat').textContent=catEl?catEl.textContent:'';
-  // restart the "live motion" animation fresh each time it's opened
-  modalImg.style.animation='none';
-  void modalImg.offsetWidth;
-  modalImg.style.animation='';
   modal.classList.add('active');
   document.body.style.overflow='hidden';
 }
 function closeDishModal(){
   document.getElementById('dishModal').classList.remove('active');
   document.body.style.overflow='';
+  var v=document.getElementById('dishModalVideo');
+  if(v){v.pause();}
 }
 function closeDishModalOutside(e){
   if(e.target && e.target.id==='dishModal') closeDishModal();
