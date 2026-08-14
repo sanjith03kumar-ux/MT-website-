@@ -1363,7 +1363,7 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
   letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;
   padding:14px 36px;border-radius:8px;border:none;cursor:pointer;
   background:var(--wa-grad);
-  color:#fff;
+  color:#ffffff;
   text-shadow:0 1px 2px rgba(0,0,0,.4);
   transition:all .3s ease;
   display:inline-flex;align-items:center;gap:10px;
@@ -1372,12 +1372,19 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
 }
 .btn-whatsapp:hover{transform:translateY(-2px);background:var(--wa-grad-hover);box-shadow:0 10px 26px rgba(31,169,60,0.45);}
 .btn-whatsapp i{font-size:1.1rem;}
+.btn-whatsapp img{
+  width:22px;
+  height:22px;
+  display:block;
+  object-fit:contain;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:1024px){
   .hero-content{grid-template-columns:1fr;padding-top:100px;row-gap:6px;}
   .hero-visual{order:-1;margin-bottom:8px;}
-  .hero-text{order:2;}
+  .hero-text{order:2;}7
   .hero-badge{margin-bottom:10px;}
   .hero-social{margin-bottom:8px;}
   .hero-deco{font-size:1.3rem;margin-bottom:6px;}
@@ -2335,7 +2342,7 @@ h1, h2, h3, h4, h5, h6,
         <div class="form-group full"><label class="form-label">Special Requests</label><textarea class="form-textarea" placeholder="Anniversary, allergies, dietary requirements..."></textarea></div>
         <div class="form-group full" style="text-align:center;">
           <button type="button" class="btn-whatsapp" onclick="sendMainReservationWhatsApp()" style="font-size:.9rem;padding:15px 46px;">
-            <i class="fab fa-whatsapp"></i> Send Reservation via WhatsApp
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp"> Send Reservation via WhatsApp
           </button>
           <p style="margin-top:12px;font-size:.75rem;color:rgb(255, 255, 255);letter-spacing:1px;">Opens WhatsApp with your details pre-filled</p>
         </div>
@@ -2500,7 +2507,7 @@ h1, h2, h3, h4, h5, h6,
         <div class="form-group"><label class="form-label">Experience</label><select class="form-select"><option>3rd Floor Indoor</option><option>Bar Lounge</option><option>Private Event</option></select></div>
         <div class="form-group full" style="text-align:center;">
           <button type="button" class="btn-whatsapp" onclick="sendBarReservationWhatsApp()" style="font-size:.88rem;padding:14px 44px;">
-            <i class="fab fa-whatsapp"></i> Reserve via WhatsApp
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp"> Reserve via WhatsApp
           </button>
           <p style="margin-top:12px;font-size:.75rem;color:#fff;letter-spacing:1px;">Opens WhatsApp with your details pre-filled</p>
         </div>
