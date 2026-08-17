@@ -1128,31 +1128,47 @@ body .social-link[data-social="youtube"]:hover{background:#FF0000;border-color:#
 }
 #barSoonOverlay.open{display:flex;opacity:1;}
 .bar-soon-modal{
-  position:relative;max-width:440px;width:100%;text-align:center;
-  background:linear-gradient(180deg,var(--dark-brown),var(--espresso));
-  border-radius:22px;border:1px solid rgba(23,19,16,0.12);
+  position:relative;max-width:460px;width:100%;text-align:center;
+  border-radius:26px;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.14);
   border-top:3px solid;border-image:linear-gradient(90deg,var(--gold),var(--gold-light),var(--terracotta-light)) 1;
-  box-shadow:0 40px 100px rgba(0,0,0,0.6);
-  padding:38px 30px 32px;
+  box-shadow:0 40px 100px rgba(0,0,0,0.65);
+  isolation:isolate;
   transform:scale(.85) translateY(30px);opacity:0;
   transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .35s ease;
 }
 #barSoonOverlay.open .bar-soon-modal{transform:scale(1) translateY(0);opacity:1;}
+.bar-soon-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:-2;
+}
+.bar-soon-modal::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(8,5,3,0.55) 0%,rgba(8,5,3,0.78) 55%,rgba(8,5,3,0.92) 100%);
+}
+.bar-soon-modal .bar-soon-inner{
+  position:relative;z-index:1;
+  padding:44px 32px 36px;
+}
 .bar-soon-close{
   position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;
-  background:rgba(23,19,16,0.05);border:1px solid rgba(23,19,16,0.15);color:var(--cream);
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:#fff;
   display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;
-  transition:all .25s;z-index:2;
+  transition:all .25s;z-index:3;backdrop-filter:blur(4px);
 }
 .bar-soon-close:hover{background:var(--italian-red);border-color:var(--italian-red);transform:rotate(90deg);}
 .bar-soon-icon{
   width:64px;height:64px;border-radius:50%;margin:0 auto 18px;
   background:var(--gold-grad);color:#fff;font-size:1.5rem;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
   display:flex;align-items:center;justify-content:center;
 }
-.bar-soon-modal h3{font-family:var(--font-h);font-weight:800;font-size:1.4rem;color:var(--cream);margin-bottom:10px;}
-.bar-soon-modal p{font-size:.92rem;color:rgba(43,36,29,0.86);line-height:1.6;margin-bottom:22px;}
+.bar-soon-modal h3{font-family:var(--font-h);font-weight:800;font-size:1.5rem;color:#fff;margin-bottom:12px;text-shadow:0 2px 12px rgba(0,0,0,0.5);}
+.bar-soon-modal p{font-size:.94rem;color:rgba(255,255,255,0.88);line-height:1.7;margin-bottom:24px;text-shadow:0 1px 8px rgba(0,0,0,0.4);}
 .bar-soon-modal .btn-primary{display:inline-flex;}
+@media (max-width:480px){
+  .bar-soon-modal .bar-soon-inner{padding:36px 22px 28px;}
+}
 .table-modal{
   position:relative;max-width:760px;width:100%;
   background:linear-gradient(180deg,var(--dark-brown),var(--espresso));
@@ -3450,11 +3466,16 @@ document.addEventListener('DOMContentLoaded', function(){
 <!-- BAR & RESTAURANT — "Opening Soon" popup (bar section temporarily closed) -->
 <div id="barSoonOverlay" onclick="if(event.target===this)closeBarSoon();">
   <div class="bar-soon-modal">
-    <button class="bar-soon-close" onclick="closeBarSoon()" aria-label="Close"><i class="fas fa-times"></i></button>
-    <div class="bar-soon-icon"><i class="fas fa-glass-cheers"></i></div>
-    <h3>Opening Soon</h3>
-    <p>Our Bar &amp; Restaurant on the 3rd floor is being prepared for you and isn't open just yet. Please check back soon — in the meantime, we'd love to host you in the main restaurant.</p>
-    <button class="btn-primary" onclick="closeBarSoon()">Got it</button>
+    <video class="bar-soon-video" autoplay muted loop playsinline preload="auto">
+      <source src="image/bar-hero-bg.mp4" type="video/mp4">
+    </video>
+    <div class="bar-soon-inner">
+      <button class="bar-soon-close" onclick="closeBarSoon()" aria-label="Close"><i class="fas fa-times"></i></button>
+      <div class="bar-soon-icon"><i class="fas fa-glass-cheers"></i></div>
+      <h3>Opening Soon</h3>
+      <p>Our Bar &amp; Restaurant on the 3rd floor is being prepared for you and isn't open just yet. Please check back soon — in the meantime, we'd love to host you in the main restaurant.</p>
+      <button class="btn-primary" onclick="closeBarSoon()">Got it</button>
+    </div>
   </div>
 </div>
 
