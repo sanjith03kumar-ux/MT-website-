@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mama Roma – Authentic Italian Cuisine | Mount Lavinia, Colombo</title>
-<meta name="description" content="Premium authentic Italian cuisine at Mama Roma, Mount Lavinia, Colombo.">
+<title>Mama Roma Authentic Italian Cuisine - Café & Sport Bar | Mount Lavinia, Colombo</title>
+<meta name="description" content="Mama Roma Authentic Italian Cuisine - Café &amp; Sport Bar. Ground Floor Café, 1st Floor Italian Dining, 2nd Floor Sport Bar, 3rd Floor Private Dining and 4th Floor Smoking Area in Mount Lavinia, Colombo.">
 <link rel="canonical" href="https://www.mamaroma.lk/">
 
 <!-- ============================================================
@@ -40,8 +40,8 @@
 <!-- Open Graph / social sharing tags -->
 <meta property="og:type" content="restaurant.restaurant">
 <meta property="og:site_name" content="Mama Roma">
-<meta property="og:title" content="Mama Roma – Authentic Italian Cuisine | Mount Lavinia, Colombo">
-<meta property="og:description" content="Premium authentic Italian cuisine at Mama Roma, Mount Lavinia, Colombo. Wood-fired pizza, handmade pasta and a rooftop dining experience.">
+<meta property="og:title" content="Mama Roma Authentic Italian Cuisine - Café & Sport Bar | Mount Lavinia, Colombo">
+<meta property="og:description" content="Mama Roma Authentic Italian Cuisine - Café &amp; Sport Bar. Ground Floor Café, 1st Floor Italian Dining, 2nd Floor Sport Bar, 3rd Floor Private Dining and 4th Floor Smoking Area.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -50,8 +50,8 @@
 
 <!-- Twitter card tags -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mama Roma – Authentic Italian Cuisine | Mount Lavinia, Colombo">
-<meta name="twitter:description" content="Premium authentic Italian cuisine at Mama Roma, Mount Lavinia, Colombo. Wood-fired pizza, handmade pasta and a rooftop dining experience.">
+<meta name="twitter:title" content="Mama Roma Authentic Italian Cuisine - Café & Sport Bar | Mount Lavinia, Colombo">
+<meta name="twitter:description" content="Mama Roma Authentic Italian Cuisine - Café &amp; Sport Bar. Ground Floor Café, 1st Floor Italian Dining, 2nd Floor Sport Bar, 3rd Floor Private Dining and 4th Floor Smoking Area.">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80">
 
 <!-- Google tag (gtag.js) -->
@@ -1231,6 +1231,7 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
 
 /* ===== BAR PAGE ===== */
 #bar-page{display:none;}
+#cafe-page{display:none;}
 .bar-hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--black);}
 .bar-hero-bg{
   position:absolute;inset:0;
@@ -1247,6 +1248,12 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
   background:linear-gradient(135deg,rgba(10,7,5,.9) 0%,rgba(10,7,5,.6) 100%);
 }
 .bar-hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:120px 5% 80px;text-align:center;}
+.tiramisu-showcase,.coffee-showcase{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#080706;}
+.tiramisu-showcase video,.coffee-showcase video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+.tiramisu-showcase::after,.coffee-showcase::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,6,.18),rgba(8,7,6,.48) 58%,rgba(8,7,6,.78));}
+.tiramisu-showcase-content,.coffee-showcase-content{position:relative;z-index:1;text-align:center;padding:80px 5%;}
+.tiramisu-showcase-title{font-family:var(--font-h);font-size:clamp(3rem,8vw,7.5rem);font-weight:800;letter-spacing:0;color:#fff;text-shadow:0 5px 30px rgba(0,0,0,.65);background:linear-gradient(110deg,#fff1b0 15%,#fff 35%,#c99532 52%,#fff1b0 68%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:tiramisuShine 5s linear infinite;}
+@keyframes tiramisuShine{to{background-position:-220% center;}}
 
 /* ===== Bar page (non-hero) sections: Italian-tinted granite + Colosseum arcade motif ===== */
 .italian-granite-bg{
@@ -1302,6 +1309,21 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
 .floor-imgs{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .floor-imgs img:first-child{grid-row:span 2;border-radius:16px;object-fit:cover;height:100%;}
 .floor-imgs img{width:100%;height:190px;object-fit:cover;border-radius:16px;}
+.floor-section{overflow:hidden;background-color:#090806;background-image:linear-gradient(90deg,rgba(7,6,5,.96) 0%,rgba(7,6,5,.78) 43%,rgba(7,6,5,.4) 100%),url('image/smoking.png');background-size:cover;background-position:center;}
+.floor-section::before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 25%,rgba(255,220,130,.12) 48%,transparent 68%);transform:translateX(-100%);animation:floorShine 8s ease-in-out infinite;pointer-events:none;}
+.floor-section .section-inner{position:relative;z-index:1;}
+.floor-section .floor-grid{margin-top:42px;}
+.floor-section .floor-grid>div:first-child{padding:34px;border:1px solid rgba(255,213,120,.25);background:rgba(12,10,8,.52);backdrop-filter:blur(10px);box-shadow:0 20px 65px rgba(0,0,0,.32);}
+.floor-imgs{grid-template-columns:1.18fr .82fr;grid-template-rows:1fr 1fr;gap:16px;}
+.floor-collage-item{position:relative;min-height:190px;overflow:hidden;border:1px solid rgba(255,213,120,.35);border-radius:14px;background:#15100b;box-shadow:0 16px 38px rgba(0,0,0,.38);}
+.floor-collage-item::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 25%,rgba(255,255,255,.2) 48%,transparent 65%);transform:translateX(-130%);transition:transform .8s ease;pointer-events:none;}
+.floor-collage-item:hover::after{transform:translateX(130%);}
+.floor-collage-item img{width:100%;height:100%;min-height:190px;object-fit:cover;display:block;transition:transform .7s ease,filter .7s ease;}
+.floor-collage-item:hover img{transform:scale(1.06);filter:saturate(1.15) brightness(1.08);}
+.floor-collage-main{grid-row:span 2;min-height:396px;}
+.floor-collage-main img{min-height:396px;}
+.floor-collage-caption{position:absolute;left:16px;bottom:14px;z-index:1;color:#fff;font-family:var(--font-h);font-size:.7rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;text-shadow:0 2px 12px #000;}
+@keyframes floorShine{0%,45%{transform:translateX(-100%)}75%,100%{transform:translateX(100%)}}
 .floor-features{display:flex;flex-direction:column;gap:18px;margin-top:28px;}
 .floor-feature{display:flex;gap:14px;align-items:flex-start;}
 .floor-feature-icon{width:42px;height:42px;border-radius:10px;background:rgba(31,169,60,0.1);border:1px solid rgba(31,169,60,0.2);display:flex;align-items:center;justify-content:center;color:#caa155;flex-shrink:0;}
@@ -1897,7 +1919,8 @@ h1, h2, h3, h4, h5, h6,
     <li><a href="#gallery" onclick="return navGo('gallery',event,this);">Gallery</a></li>
     <li><a href="#reviews" onclick="return navGo('reviews',event,this);">Reviews</a></li>
     <li><a href="#location" onclick="return navGo('location',event,this);">Location</a></li>
-    <li><a href="#" onclick="showPage('bar');return false;">Bar & Restaurant</a></li>
+    <li><a href="#" onclick="showPage('cafe');return false;">Café</a></li>
+    <li><a href="#" onclick="showPage('bar');return false;">Sport Bar</a></li>
     <li class="nav-cta"><a href="#reservation" onclick="return navGo('reservation',event,this);">Reserve</a></li>
   </ul>
   <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -1912,7 +1935,8 @@ h1, h2, h3, h4, h5, h6,
   <a href="#gallery" onclick="return navGo('gallery',event,this);">Gallery</a>
   <a href="#reviews" onclick="return navGo('reviews',event,this);">Reviews</a>
   <a href="#location" onclick="return navGo('location',event,this);">Location</a>
-  <a href="#" onclick="showPage('bar');closeMobileNav();return false;">Bar & Restaurant</a>
+  <a href="#" onclick="showPage('cafe');closeMobileNav();return false;">Café</a>
+  <a href="#" onclick="showPage('bar');closeMobileNav();return false;">Sport Bar</a>
   <a href="#reservation" onclick="return navGo('reservation',event,this);">Reserve a Table</a>
 </div>
 
@@ -2154,38 +2178,58 @@ h1, h2, h3, h4, h5, h6,
   <div class="section-inner">
     <div class="reveal">
       <div class="section-badge"><span>Dining Spaces</span></div>
-      <h2 clahttp://127.0.0.1:3000s="section-title">Every Space Tells <span class="red">a Story</span></h2>
+      <h2 class="section-title">Every Floor Tells <span class="red">a Story</span></h2>
       <div class="divider"></div>
-      <p class="section-subtitle">From intimate indoor settings to exclusive private dining, Mama Roma offers distinct dining experiences for every mood.</p>
+      <p class="section-subtitle">Five floors, five moods — from your morning espresso to a private evening under Italian marble. Mama Roma offers a distinct experience on every level.</p>
     </div>
     <div class="dining-grid">
       <div class="dining-card dining-card-large reveal">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=80" alt="Grand Dining" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700&q=80" alt="Mama Roma Café" loading="lazy">
         <div class="dining-card-overlay">
-          <div class="dining-card-tag">Private Dining</div>
-          <h3>Private Dining Room</h3>
-          <p>Warm Italian marble, soft candlelight, and the gentle hum of live music on weekends.</p>
-          <a href="#reservation">Reserve This Space <i class="fas fa-arrow-right"></i></a>
+          <div class="dining-card-tag">Ground Floor</div>
+          <h3>The Café</h3>
+          <p>Start your day right — freshly pulled cappuccinos, silky lattes and Italian pastries in a warm, welcoming reception space.</p>
+          <a href="#" onclick="showPage('cafe');return false;">Visit the Café <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:28px;">
         <div class="dining-card reveal">
-          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Private" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Italian Dining" loading="lazy">
           <div class="dining-card-overlay">
-            <div class="dining-card-tag">Ground Floor</div>
-            <h3>Ground Floor</h3>
-            <p>Elegant table seating and a stylish reception coffee area, complemented by a live culinary experience where guests can watch authentic cinnamon wood-fired pizzas being prepared in an open oven..</p>
+            <div class="dining-card-tag">1st Floor</div>
+            <h3>Italian Dining</h3>
+            <p>Elegant table seating and a live culinary experience where guests can watch authentic wood-fired pizzas being prepared in an open oven.</p>
             <a href="#reservation">Enquire Now <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="dining-card reveal">
-          <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmFyfGVufDB8fDB8fHww" alt="Mama Roma Bar" loading="lazy">
+          <img src="image/bar.png" alt="Mama Roma Sport Bar" loading="lazy">
           <div class="dining-card-overlay">
-            <div class="dining-card-tag">3RD Floor</div>
-            <h3>The Bar</h3>
-            <p>Hand-crafted cocktails and fine wines beneath the glow of the Mama Roma marquee.</p>
-            <a href="#reservation">Enquire Now <i class="fas fa-arrow-right"></i></a>
+            <div class="dining-card-tag">2nd Floor</div>
+            <h3>Sport Bar</h3>
+            <p>Big screens, hand-crafted cocktails and fine wines — the ultimate spot to catch the game with friends.</p>
+            <a href="#" onclick="showPage('bar');return false;">Enquire Now <i class="fas fa-arrow-right"></i></a>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="dining-grid" style="margin-top:28px;">
+      <div class="dining-card reveal">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=80" alt="Private Dining" loading="lazy">
+        <div class="dining-card-overlay">
+          <div class="dining-card-tag">3rd Floor</div>
+          <h3>Private Dining</h3>
+          <p>Warm Italian marble, soft candlelight, and the gentle hum of live music — reserved exclusively for you and your guests.</p>
+          <a href="#reservation">Reserve This Space <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="dining-card reveal">
+        <img src="image/smoking.png" alt="Smoking Area" loading="lazy">
+        <div class="dining-card-overlay">
+          <div class="dining-card-tag">4th Floor</div>
+          <h3>Smoking Area</h3>
+          <p>An open-air lounge on our top floor, perfect for relaxing with a drink and a cigar after your meal.</p>
+          <a href="#reservation">Enquire Now <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -2246,7 +2290,7 @@ h1, h2, h3, h4, h5, h6,
         <div class="reviews-set" id="reviewsSetA">
           <div class="review-card">
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"Absolutely world-class Italian dining. The Carbonara transported me straight back to Rome. The view at sunset from the 3rd floor is simply magical. Our go-to for every special occasion."</p>
+            <p class="review-text">"Absolutely world-class Italian dining. The Carbonara transported me straight back to Rome. The view at sunset from the top floor is simply magical. Our go-to for every special occasion."</p>
             <div class="review-author">
               <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&q=80" alt="Priya" class="review-avatar" loading="lazy">
               <div><div class="review-name">Priya Jayawardena</div><div class="review-date">2 weeks ago · Google</div></div>
@@ -2335,7 +2379,7 @@ h1, h2, h3, h4, h5, h6,
         <div class="form-group"><label class="form-label">Time</label><input type="time" class="form-input"></div>
         <div class="form-group"><label class="form-label">Number of Guests</label><select class="form-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div>
         <div class="form-group"><label class="form-label">Number of Tables</label><select class="form-select" id="numTablesSelect"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div>
-        <div class="form-group"><label class="form-label">Dining Space</label><select class="form-select"><option>Main Dining Hall</option><option>2nd Floor</option><option>3rd Floor Private</option><option>Bar & Lounge</option></select></div>
+        <div class="form-group"><label class="form-label">Dining Space</label><select class="form-select"><option>Ground Floor Café</option><option>1st Floor Italian Dining</option><option>2nd Floor Sport Bar</option><option>3rd Floor Private Dining</option><option>4th Floor Smoking Area</option></select></div>
         <div class="form-group table-picker-group">
           <input type="hidden" class="form-input" id="tableChoiceInput" placeholder="Table Preference">
         </div>
@@ -2364,7 +2408,7 @@ h1, h2, h3, h4, h5, h6,
         <a href="#" class="social-link" data-social="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
-    <div class="footer-col"><h4>Explore</h4><ul><li><a href="#experience">Our Story</a></li><li><a href="#menu">The Menu</a></li><li><a href="#dining">Dining Spaces</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#" onclick="showPage('bar');return false;">Bar & Restaurant</a></li></ul></div>
+    <div class="footer-col"><h4>Explore</h4><ul><li><a href="#experience">Our Story</a></li><li><a href="#menu">The Menu</a></li><li><a href="#dining">Dining Spaces</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#" onclick="showPage('cafe');return false;">Café</a></li><li><a href="#" onclick="showPage('bar');return false;">Sport Bar</a></li></ul></div>
     <div class="footer-col"><h4>Reservations</h4><ul><li><a href="#reservation">Book a Table</a></li><li><a href="#reservation">Private Events</a></li><li><a href="#reservation">Corporate Dining</a></li><li><a href="#location">Contact Us</a></li></ul></div>
     <div class="footer-col"><h4>Hours</h4><ul><li><a href="#">Mon–Thu: 08:30AM–22:00PM</a></li><li><a href="#">Fri–Sat: 08:30AM–22:00PM</a></li><li><a href="#">Sunday: 08:30AM–22:00PM</a></li><li><a href="#location">No.04 Hotel Road Mount Lavinia, Colombo</a></li><li><a href="tel:+94117000000">+94 11 XXX XXXX</a></li></ul></div>
   </div>
@@ -2390,8 +2434,8 @@ h1, h2, h3, h4, h5, h6,
       <i class="fas fa-cocktail"></i><span>Premium Nightlife Experience</span><i class="fas fa-cocktail"></i>
     </div>
     <p class="hero-deco">Welcome to</p>
-    <h1 class="hero-title">Bar & <span class="green">Restaurant</span></h1>
-    <p class="hero-subtitle" style="margin:0 auto 34px;max-width:600px;">Elevate your evening at Mama Roma's 3rd floor bar. Craft cocktails, premium spirits, and stunning views of Mount Lavinia.</p>
+    <h1 class="hero-title">Sport <span class="green">Bar</span></h1>
+    <p class="hero-subtitle" style="margin:0 auto 34px;max-width:600px;">Elevate your evening at Mama Roma's 2nd floor Sport Bar. Craft cocktails, premium spirits, big-screen sport and stunning views of Mount Lavinia.</p>
     <a href="#bar-reservation" class="btn-primary"><i class="fas fa-glass-cheers"></i> Reserve the Experience</a>
   </div>
 </div>
@@ -2465,19 +2509,19 @@ h1, h2, h3, h4, h5, h6,
   <div class="section-inner">
     <div class="floor-grid">
       <div class="reveal">
-        <div class="section-badge"><span>3rd Floor</span></div>
-        <h2 class="section-title">Elevated <span class="green">Indoor Dining</span></h2>
+        <div class="section-badge"><span>2nd Floor</span></div>
+        <h2 class="section-title">Elevated <span class="green">Sport Bar</span></h2>
         <div class="divider"></div>
-        <p class="section-subtitle">Our luxuriously appointed 3rd floor dining space offers an intimate atmosphere with premium furnishings, mood lighting, and impeccable service.</p>
+        <p class="section-subtitle">Our luxuriously appointed 2nd floor Sport Bar offers an intimate atmosphere with premium furnishings, mood lighting, big screens, and impeccable service.</p>
         <div class="floor-features">
           <div class="floor-feature"><div class="floor-feature-icon"><i class="fas fa-users"></i></div><div><h4>Capacity for Every Group</h4><p>Flexible seating from intimate duos to large groups of 50+</p></div></div>
           <div class="floor-feature"><div class="floor-feature-icon"><i class="fas fa-music"></i></div><div><h4>Live Entertainment</h4><p>Live Italian music and jazz on select evenings</p></div></div>
           <div class="floor-feature"><div class="floor-feature-icon"><i class="fas fa-snowflake"></i></div><div><h4>Climate Controlled</h4><p>Perfect comfort year-round with premium air conditioning</p></div></div>
         </div>
-        <div style="margin-top:28px;"><a href="#bar-reservation" class="btn-primary"><i class="fas fa-calendar-check"></i> Book the 3rd Floor</a></div>
+        <div style="margin-top:28px;"><a href="#bar-reservation" class="btn-primary"><i class="fas fa-calendar-check"></i> Book the 2nd Floor</a></div>
       </div>
       <div class="floor-imgs reveal">
-        <img src="image/bar-picture.jpeg" alt="3rd Floor" style="height:480px;" loading="lazy">
+        <img src="image/bar-picture.jpeg" alt="2nd Floor Sport Bar" style="height:480px;" loading="lazy">
         <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Interior" loading="lazy">
         <img src="https://i.pinimg.com/736x/e5/f5/fa/e5f5fa52e06d7f6b499695ea46ecb5e5.jpg" alt="Seating" loading="lazy">
       </div>
@@ -2504,7 +2548,7 @@ h1, h2, h3, h4, h5, h6,
         <div class="form-group"><label class="form-label">Date</label><input type="date" class="form-input"></div>
         <div class="form-group"><label class="form-label">Time</label><input type="time" class="form-input"></div>
         <div class="form-group"><label class="form-label">Guests</label><select class="form-select"><option>2 Guests</option><option>4 Guests</option><option>6 Guests</option><option>8+ Guests</option><option>Private Event (20+)</option></select></div>
-        <div class="form-group"><label class="form-label">Experience</label><select class="form-select"><option>3rd Floor Indoor</option><option>Bar Lounge</option><option>Private Event</option></select></div>
+        <div class="form-group"><label class="form-label">Experience</label><select class="form-select"><option>2nd Floor Sport Bar</option><option>Bar Lounge</option><option>Private Event</option></select></div>
         <div class="form-group full" style="text-align:center;">
           <button type="button" class="btn-whatsapp" onclick="sendBarReservationWhatsApp()" style="font-size:.88rem;padding:14px 44px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp"> Reserve via WhatsApp
@@ -2524,15 +2568,103 @@ h1, h2, h3, h4, h5, h6,
       <p>Mama Roma Bar & Restaurant — Premium cocktails meet Italian dining excellence above Mount Lavinia.</p>
     </div>
     <div class="footer-col"><h4>Bar Menu</h4><ul><li><a href="#">Beer Selection</a></li><li><a href="#">Wine Cellar</a></li><li><a href="#">Signature Cocktails</a></li><li><a href="#">Premium Spirits</a></li></ul></div>
-    <div class="footer-col"><h4>Experiences</h4><ul><li><a href="#">3rd Floor Dining</a></li><li><a href="#">Private Events</a></li><li><a href="#">Live Entertainment</a></li></ul></div>
+    <div class="footer-col"><h4>Experiences</h4><ul><li><a href="#">2nd Floor Sport Bar</a></li><li><a href="#">Private Events</a></li><li><a href="#">Live Entertainment</a></li></ul></div>
     <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">+94112720020</a></li><li><a href="#">Mount Lavinia, Colombo</a></li><li><a href="#" onclick="showPage('main');return false;">← Main Website</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 <span class="gold">Mama Roma</span> – Bar & Restaurant. All rights reserved.</p>
-    <p>Mount Lavinia, Colombo · Bar & Restaurant Experience</p>
+    <p>© 2025 <span class="gold">Mama Roma</span> – Sport Bar. All rights reserved.</p>
+    <p>Mount Lavinia, Colombo · 2nd Floor Sport Bar Experience</p>
   </div>
 </footer>
 </div><!-- end bar-page -->
+
+<!-- ======= CAFÉ PAGE ======= -->
+<div id="cafe-page">
+<a href="#" class="back-btn" onclick="showPage('main');return false;"><i class="fas fa-arrow-left"></i> Back to Home</a>
+<div class="bar-hero">
+  <div class="bar-hero-bg">
+    <video class="bar-hero-video" autoplay muted loop playsinline preload="auto">
+      <source src="image/cafe-loop (1).mp4"type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-italian-accent"></div>
+  <div class="bar-hero-content text-center reveal">
+    <div class="hero-badge" style="justify-content:center;margin-bottom:18px;">
+      <i class="fas fa-mug-hot"></i><span>Ground Floor · Café</span><i class="fas fa-mug-hot"></i>
+    </div>
+    <p class="hero-deco">Welcome to</p>
+    <h1 class="hero-title">Mama Roma <span class="gold">Café</span></h1>
+    <p class="hero-subtitle" style="margin:0 auto 34px;max-width:600px;">A true taste of Italy from your very first sip. Rich cappuccinos, silky lattes and freshly baked pastries, served in a warm reception space on our ground floor.</p>
+  </div>
+</div>
+
+<div class="italian-divider"></div>
+
+<section class="coffee-showcase" aria-label="Italian coffee">
+  <video autoplay muted loop playsinline preload="metadata">
+    <source src="image/cofeee.mp4" type="video/mp4">
+  </video>
+  <div class="coffee-showcase-content reveal">
+    <h2 class="tiramisu-showcase-title">Caffè Italiano</h2>
+  </div>
+</section>
+
+<div class="italian-divider"></div>
+
+<section class="tiramisu-showcase" aria-label="Tiramisù Classico">
+  <video autoplay muted loop playsinline preload="metadata">
+    <source src="image/vecteezy_close-up-on-a-portion-of-gourmet-tiramisu-italian-dessert_54527275.mp4" type="video/mp4">
+  </video>
+  <div class="tiramisu-showcase-content reveal">
+    <h2 class="tiramisu-showcase-title">Tiramisù Classico</h2>
+  </div>
+</section>
+
+<div class="italian-divider"></div>
+
+<section class="section floor-section italian-granite-bg">
+  <div class="section-inner">
+    <div class="floor-grid">
+      <div class="reveal">
+        <div class="section-badge"><span>Ground Floor</span></div>
+        <h2 class="section-title">Your Morning <span class="gold">Ritual</span></h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Our ground floor Café greets every guest with the aroma of fresh coffee and a stylish reception seating area — the perfect first (or last) stop at Mama Roma.</p>
+        <div class="floor-features">
+          <div class="floor-feature"><div class="floor-feature-icon"><i class="fas fa-mug-hot"></i></div><div><h4>Handcrafted Coffee</h4><p>Cappuccino, latte, espresso and more, made fresh to order</p></div></div>
+          <div class="floor-feature"><div class="floor-feature-icon"><i class="fas fa-bread-slice"></i></div><div><h4>Fresh Pastries Daily</h4><p>Croissants, tiramisu and light bites baked in-house</p></div></div>
+          <div class="floor-feature"><div class="floor-feature-icon"><i class="fas fa-couch"></i></div><div><h4>Relaxed Seating</h4><p>A cozy reception lounge — perfect while you wait for your table</p></div></div>
+        </div>
+      </div>
+      <div class="floor-imgs reveal">
+        <div class="floor-collage-item floor-collage-main"><img src="image/g%20floor.png" alt="Ground floor cafe interior" loading="lazy"><span class="floor-collage-caption">The Ground Floor</span></div>
+        <div class="floor-collage-item"><img src="image/bar-picture.jpeg" alt="Mama Roma bar interior" loading="lazy"><span class="floor-collage-caption">Warm Italian evenings</span></div>
+        <div class="floor-collage-item"><img src="image/smoking.png" alt="Mama Roma outdoor seating" loading="lazy"><span class="floor-collage-caption">Relaxed seating</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="italian-divider"></div>
+
+<footer class="footer">
+  <div class="footer-social">
+    <a href="#" class="social-link" data-social="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" class="social-link" data-social="instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="social-link" data-social="tiktok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+    <a href="#" class="social-link" data-social="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+  </div>
+  <div class="footer-grid">
+    <div class="footer-col"><h4>Café Menu</h4><ul><li><a href="#">Espresso Bar</a></li><li><a href="#">Pastries & Bites</a></li><li><a href="#">Takeaway Coffee</a></li></ul></div>
+    <div class="footer-col"><h4>Experiences</h4><ul><li><a href="#">Ground Floor Café</a></li><li><a href="#" onclick="showPage('main');return false;">Italian Dining</a></li><li><a href="#" onclick="showPage('bar');return false;">Sport Bar</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">+94112720020</a></li><li><a href="#">Mount Lavinia, Colombo</a></li><li><a href="#" onclick="showPage('main');return false;">← Main Website</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <span class="gold">Mama Roma</span> – Café. All rights reserved.</p>
+    <p>Mount Lavinia, Colombo · Ground Floor Café Experience</p>
+  </div>
+</footer>
+</div><!-- end cafe-page -->
 
 <script>
 /* ======================================================
@@ -2596,12 +2728,14 @@ function navGo(id,e,linkEl){
   if(e) e.preventDefault();
   closeMobileNav();
   var barPage=document.getElementById('bar-page');
+  var cafePage=document.getElementById('cafe-page');
   var onBarPage = barPage && window.getComputedStyle(barPage).display!=='none';
+  var onCafePage = cafePage && window.getComputedStyle(cafePage).display!=='none';
   function jump(){
     var el=document.getElementById(id);
     if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
   }
-  if(onBarPage){
+  if(onBarPage || onCafePage){
     showPage('main');
     setTimeout(jump,250);
   }else{
@@ -2634,9 +2768,15 @@ function showPage(page){
       return;
     }
     document.getElementById('main-page').style.display='none';
+    document.getElementById('cafe-page').style.display='none';
     document.getElementById('bar-page').style.display='block';
+  }else if(page==='cafe'){
+    document.getElementById('main-page').style.display='none';
+    document.getElementById('bar-page').style.display='none';
+    document.getElementById('cafe-page').style.display='block';
   }else{
     document.getElementById('bar-page').style.display='none';
+    document.getElementById('cafe-page').style.display='none';
     document.getElementById('main-page').style.display='block';
   }
   window.scrollTo(0,0);
@@ -3435,7 +3575,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <button class="bar-soon-close" onclick="closeBarSoon()" aria-label="Close"><i class="fas fa-times"></i></button>
     <div class="bar-soon-icon"><i class="fas fa-glass-cheers"></i></div>
     <h3>Opening Soon</h3>
-    <p>Our Bar &amp; Restaurant on the 3rd floor is being prepared for you and isn't open just yet. Please check back soon — in the meantime, we'd love to host you in the main restaurant.</p>
+    <p>Our Sport Bar on the 2nd floor is being prepared for you and isn't open just yet. Please check back soon — in the meantime, we'd love to host you in the main restaurant.</p>
     <button class="btn-primary" onclick="closeBarSoon()">Got it</button>
   </div>
 </div>
