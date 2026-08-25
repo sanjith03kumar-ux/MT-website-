@@ -2423,7 +2423,7 @@ h1, h2, h3, h4, h5, h6,
 <a href="#" class="back-btn" onclick="showPage('main');return false;"><i class="fas fa-arrow-left"></i> Back to Home</a>
 <div class="bar-hero">
   <div class="bar-hero-bg">
-    <video class="bar-hero-video" autoplay muted loop playsinline preload="none">
+    <video class="bar-hero-video" autoplay muted loop playsinline preload="metadata">
       <source src="image/bar-hero-bg.mp4" type="video/mp4">
     </video>
   </div>
@@ -2582,7 +2582,7 @@ h1, h2, h3, h4, h5, h6,
 <a href="#" class="back-btn" onclick="showPage('main');return false;"><i class="fas fa-arrow-left"></i> Back to Home</a>
 <div class="bar-hero">
   <div class="bar-hero-bg">
-    <video class="bar-hero-video" autoplay muted loop playsinline preload="none">
+    <video class="bar-hero-video" autoplay muted loop playsinline preload="metadata">
       <source src="image/cafe-loop (1).mp4"type="video/mp4">
     </video>
   </div>
@@ -2769,17 +2769,35 @@ function showPage(page){
     document.getElementById('main-page').style.display='none';
     document.getElementById('cafe-page').style.display='none';
     document.getElementById('bar-page').style.display='block';
+    playVideosIn('bar-page');
   }else if(page==='cafe'){
     document.getElementById('main-page').style.display='none';
     document.getElementById('bar-page').style.display='none';
     document.getElementById('cafe-page').style.display='block';
+    playVideosIn('cafe-page');
   }else{
     document.getElementById('bar-page').style.display='none';
     document.getElementById('cafe-page').style.display='none';
     document.getElementById('main-page').style.display='block';
+    playVideosIn('main-page');
   }
   window.scrollTo(0,0);
   setTimeout(initReveal,100);
+}
+
+// Mobile browsers (especially iOS Safari) often silently refuse to autoplay a <video>
+// that was hidden (display:none) or hadn't buffered anything yet, even with the
+// autoplay/loop attributes set. Calling .play() explicitly once the section becomes
+// visible fixes videos that "load but never loop" on phones.
+function playVideosIn(containerId){
+  var container=document.getElementById(containerId);
+  if(!container) return;
+  var vids=container.querySelectorAll('video[autoplay]');
+  vids.forEach(function(v){
+    v.muted=true; // some mobile browsers require the muted PROPERTY, not just the attribute
+    var p=v.play();
+    if(p&&p.catch) p.catch(function(){/* ignore - will be retried by the scroll observer below */});
+  });
 }
 
 function openBarSoon(){
@@ -2992,6 +3010,45 @@ document.addEventListener('DOMContentLoaded',function(){
 window.addEventListener('scroll',function(){
   const bg=document.getElementById('pisaBg');
   if(bg){bg.style.transform='translateY('+(window.scrollY*0.15)+'px)';}
+});
+
+// ===== KEEP ALL AUTOPLAY VIDEOS ACTUALLY PLAYING/LOOPING ON MOBILE =====
+// Phones (iOS Safari in particular) frequently pause an autoplay video the moment
+// it scrolls off-screen to save battery/data, and then don't resume it - even
+// though the `loop` attribute is set - unless something explicitly calls .play()
+// again. This watches every autoplay video on the page and nudges it to play
+// whenever it's back in the viewport.
+document.addEventListener('DOMContentLoaded',function(){
+  var autoplayVideos=document.querySelectorAll('video[autoplay]');
+  if(!('IntersectionObserver' in window)){
+    // very old browser fallback - just try to play everything once
+    autoplayVideos.forEach(function(v){v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){});});
+    return;
+  }
+  var videoObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var v=entry.target;
+      if(entry.isIntersecting){
+        v.muted=true;
+        var p=v.play();
+        if(p&&p.catch) p.catch(function(){});
+      }
+    });
+  },{threshold:0.1});
+  autoplayVideos.forEach(function(v){videoObserver.observe(v);});
+
+  // Also re-play everything when returning to the tab (mobile browsers often
+  // pause all video when the tab/app is backgrounded).
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='visible'){
+      document.querySelectorAll('video[autoplay]').forEach(function(v){
+        if(v.paused){
+          var p=v.play();
+          if(p&&p.catch) p.catch(function(){});
+        }
+      });
+    }
+  });
 });
 </script>
 
