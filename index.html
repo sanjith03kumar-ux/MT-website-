@@ -2929,7 +2929,7 @@ function sendMainInquiryWhatsApp(){
   msg+='*Phone:* '+phoneVal+'\n';
   msg+='*Topic:* '+inquiryType+'\n';
   if(inquiryMessage) msg+='*Message:* '+inquiryMessage+'\n';
-  msg+='\nSent from mamaromacolombo.com';
+  msg+='\n\nSent from www.mamaromaitalian.com\nMOUNT LAVINIA, Sri Lanka';
   var url='https://wa.me/'+WHATSAPP_PHONE+'?text='+encodeURIComponent(msg);
   window.open(url,'_blank');
 }
@@ -2996,7 +2996,7 @@ function sendBarReservationWhatsApp(){
     const v=el.value.trim();
     if(v) msg+='*'+(fields[i]||'Note')+':* '+v+'\n';
   });
-  msg+='\nSent from mamaromacolombo.com';
+  msg+='\n\nSent from www.mamaromaitalian.com\nMOUNT LAVINIA, Sri Lanka';
   var url='https://wa.me/'+WHATSAPP_PHONE+'?text='+encodeURIComponent(msg);
   window.open(url,'_blank');
 }
