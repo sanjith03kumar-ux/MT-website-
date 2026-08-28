@@ -2703,13 +2703,17 @@ function showPage(page){
 
 function openBarSoon(){
   const overlay=document.getElementById('barSoonOverlay');
+  const video=overlay.querySelector('.bar-soon-video');
   overlay.style.display='flex';
   requestAnimationFrame(function(){overlay.classList.add('open');});
+  if(video){video.currentTime=0;video.play().catch(function(){});}
   document.body.style.overflow='hidden';
 }
 function closeBarSoon(){
   const overlay=document.getElementById('barSoonOverlay');
+  const video=overlay.querySelector('.bar-soon-video');
   overlay.classList.remove('open');
+  if(video) video.pause();
   document.body.style.overflow='';
   setTimeout(function(){overlay.style.display='none';},300);
 }

@@ -731,7 +731,8 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   border-color:transparent;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4);
   box-shadow:0 6px 16px rgba(23,138,44,0.4);
 }
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+.menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+.menu-grid.menu-collage{max-width:1120px;margin:0 auto;}
 .menu-card{
   background:var(--glass);border:1px solid var(--glass-border);
   border-radius:18px;overflow:hidden;backdrop-filter:blur(10px);
@@ -747,7 +748,18 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .menu-card:hover{transform:translateY(-7px);box-shadow:0 28px 65px rgb(255, 255, 255);border-color:rgba(31,169,60,0.25);}
 .menu-card:hover::before,
 .menu-card.is-touched::before{opacity:1;}
-.menu-card-img{width:100%;height:210px;object-fit:cover;transition:transform .5s ease;}
+.menu-collage .menu-card{animation:menuTileOpen .75s cubic-bezier(.22,.9,.32,1) both;}
+.menu-collage .menu-card:nth-child(2){animation-delay:.12s;}
+.menu-collage .menu-card:nth-child(3){animation-delay:.24s;}
+.menu-collage .menu-card:nth-child(4){animation-delay:.36s;}
+.menu-collage .menu-card:nth-child(5){animation-delay:.48s;}
+.menu-collage .menu-card:nth-child(6){animation-delay:.60s;}
+.menu-collage .menu-card::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(115deg,transparent 28%,rgba(255,255,255,.55) 48%,transparent 68%);transform:translateX(-130%);animation:menuShine 2.8s ease-in-out infinite;}
+.menu-collage .menu-card.touch-shine::after{animation:menuTouchShine .72s ease-out both;}
+@keyframes menuTileOpen{from{opacity:0;transform:translateY(28px) scale(.94);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes menuShine{0%,35%{transform:translateX(-130%);}70%,100%{transform:translateX(130%);}}
+@keyframes menuTouchShine{from{transform:translateX(-130%);}to{transform:translateX(130%);}}
+.menu-card-img{width:100%;height:235px;object-fit:cover;transition:transform .5s ease;}
 .menu-card:hover .menu-card-img{transform:scale(1.04);}
 video.menu-card-img{display:block;background:#000;}
 .menu-card-body{padding:20px;}
@@ -2098,14 +2110,12 @@ h1, h2, h3, h4, h5, h6,
     </div>
     <div class="menu-tabs reveal">
       <button class="menu-tab active" onclick="filterMenu(this,'all')">All</button>
-            <button class="menu-tab" onclick="filterMenu(this,'pizza')">Pizza</button>
-      <button class="menu-tab" onclick="filterMenu(this,'antipasti')">Antipasti</button>
+      <button class="menu-tab" onclick="filterMenu(this,'pizza')">Pizza</button>
       <button class="menu-tab" onclick="filterMenu(this,'pasta')">Pasta</button>
-      <button class="menu-tab" onclick="filterMenu(this,'mains')">Mains</button>
-      <button class="menu-tab" onclick="filterMenu(this,'Coffee')">Coffee</button>
       <button class="menu-tab" onclick="filterMenu(this,'desserts')">Desserts</button>
+      <a class="menu-tab menu-visit-btn" href="#location">Find Us <i class="fas fa-arrow-right"></i></a>
     </div>
-    <div class="menu-grid" id="menuGrid">
+    <div class="menu-grid menu-collage" id="menuGrid">
       <div class="menu-card reveal" data-cat="pizza" onclick="openDishModal(this)">
         <video class="menu-card-img" src="image/pizza-menu-video.mp4" data-loop-video poster="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/ce/a7/e2/queue-up-for-the-bake.jpg?w=900&h=500&s=1" autoplay muted loop playsinline preload="metadata"></video>
         <div class="menu-card-body">
@@ -2120,22 +2130,6 @@ h1, h2, h3, h4, h5, h6,
           <div class="menu-card-cat">Pasta</div>
           <div class="menu-card-name">Cacio e Pepe</div>
           <div class="menu-card-desc">Tonnarelli, Pecorino Romano, aged Parmigiano, freshly cracked black pepper</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="antipasti" onclick="openDishModal(this)">
-        <img src="https://i0.wp.com/kaleforniakravings.com/wp-content/uploads/2024/02/Italian-antipasto-pasta-salad-7.jpg?resize=683%2C1024" alt="Bruschetta" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Antipasti</div>
-          <div class="menu-card-name">Bruschetta al Pomodoro</div>
-          <div class="menu-card-desc">Grilled sourdough, vine tomatoes, garlic, fresh basil, aged balsamic glaze</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="mains" onclick="openDishModal(this)">
-        <img src="https://media-cdn2.greatbritishchefs.com/media/d4kfc0bo/img78336.whqc_600x400q80.jpg" alt="Osso Buco" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Main Course</div>
-          <div class="menu-card-name">Osso Buco alla Milanese</div>
-          <div class="menu-card-desc">Braised veal shanks, saffron risotto, gremolata, slow-cooked for 4 hours</div>
         </div>
       </div>
       <div class="menu-card reveal" data-cat="desserts" onclick="openDishModal(this)">
@@ -2162,60 +2156,12 @@ h1, h2, h3, h4, h5, h6,
           <div class="menu-card-desc">Spicy salami, San Marzano, fior di latte, chilli flakes, fresh basil</div>
         </div>
       </div>
-      <div class="menu-card reveal" data-cat="pizza" onclick="openDishModal(this)">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4sfsS2CA6G1R_NpldP7o2V23MQ3P8JFRktwqMcqntHOnxIjbfXXYttsw&s=10" alt="Caprese" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Pizza</div>
-          <div class="menu-card-name">Carbonara</div>
-          <div class="menu-card-desc">Buffalo mozzarella, heirloom tomatoes, fresh basil, aged balsamic, olive oil</div>
-        </div>
-      </div>
       <div class="menu-card reveal" data-cat="desserts" onclick="openDishModal(this)">
         <img src="https://images.unsplash.com/photo-1567171466295-4afa63d45416?w=500&q=80" alt="Panna Cotta" class="menu-card-img" loading="lazy">
         <div class="menu-card-body">
           <div class="menu-card-cat">Desserts</div>
           <div class="menu-card-name">Panna Cotta al Lampone</div>
           <div class="menu-card-desc">Silky vanilla panna cotta, fresh raspberry coulis, mint garnish</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="desserts" onclick="openDishModal(this)">
-        <img src="https://www.cookingclassy.com/wp-content/uploads/2021/05/panna-cotta-01.jpg" alt="Panna Cotta" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Desserts</div>
-          <div class="menu-card-name">Panna cotta</div>
-          <div class="menu-card-desc">a classic Northern Italian dessert made of sweetened cream that is thickened with gelatin and molded</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="Coffee" onclick="openDishModal(this)">
-        <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=700&q=80" alt="Espresso" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Coffee</div>
-          <div class="menu-card-name">Espresso</div>
-          <div class="menu-card-desc">Rich, intense shot of pure Italian espresso, pulled fresh with a velvety crema</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="Coffee" onclick="openDishModal(this)">
-        <img src="https://www.gourmetkava.cz/modules/ph_simpleblog/featured/82.jpg" alt="Americano" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Coffee</div>
-          <div class="menu-card-name">Americano</div>
-          <div class="menu-card-desc">Smooth espresso lengthened with hot water for a lighter, full-bodied cup</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="Coffee" onclick="openDishModal(this)">
-        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=700&q=80" alt="Cappuccino" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Coffee</div>
-          <div class="menu-card-name">Cappuccino</div>
-          <div class="menu-card-desc">Espresso topped with silky steamed milk and a delicate layer of foam</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="Coffee" onclick="openDishModal(this)">
-        <img src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=700&q=80" alt="Caffè Latte" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Coffee</div>
-          <div class="menu-card-name">Caffè Latte</div>
-          <div class="menu-card-desc">Espresso blended with steamed milk, smooth and lightly sweet</div>
         </div>
       </div>
     </div>
@@ -3023,6 +2969,11 @@ function menuListPopStart(e){
   var card=menuListCardFromEvent(e);
   if(!card) return;
   card.classList.add('is-touched');
+  card.classList.remove('touch-shine');
+  void card.offsetWidth;
+  card.classList.add('touch-shine');
+  clearTimeout(card.touchShineTimer);
+  card.touchShineTimer=setTimeout(function(){card.classList.remove('touch-shine');},750);
 }
 function menuListPopEnd(e){
   var card=menuListCardFromEvent(e);
@@ -3073,9 +3024,9 @@ function applyMenuListMode(){
   var grid=document.getElementById('menuGrid');
   if(!grid) return;
   var isMobile=window.matchMedia('(max-width:768px)').matches;
+  initMenuListTouch(grid);
   if(isMobile){
     grid.classList.add('menu-list-mobile');
-    initMenuListTouch(grid);
     initMenuListReveal(grid);
   }else{
     grid.classList.remove('menu-list-mobile');
