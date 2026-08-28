@@ -1418,7 +1418,7 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
 @media(max-width:1024px){
   .hero-content{grid-template-columns:1fr;padding-top:100px;row-gap:6px;}
   .hero-visual{order:-1;margin-bottom:8px;}
-  .hero-text{order:2;}7
+  .hero-text{order:2;}
   .hero-badge{margin-bottom:10px;}
   .hero-social{margin-bottom:8px;}
   .hero-deco{font-size:1.3rem;margin-bottom:6px;}
@@ -1932,7 +1932,7 @@ h1, h2, h3, h4, h5, h6,
     <li><a href="#reviews" onclick="return navGo('reviews',event,this);">Reviews</a></li>
     <li><a href="#location" onclick="return navGo('location',event,this);">Location</a></li>
     <li><a href="#" onclick="showPage('bar');return false;">Bar & Restaurant</a></li>
-    <li class="nav-cta"><a href="#reservation" onclick="return navGo('reservation',event,this);">Reserve</a></li>
+    <li class="nav-cta"><a href="#reservation" onclick="return navGo('reservation',event,this);">Inquire</a></li>
   </ul>
   <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
@@ -1947,7 +1947,7 @@ h1, h2, h3, h4, h5, h6,
   <a href="#reviews" onclick="return navGo('reviews',event,this);">Reviews</a>
   <a href="#location" onclick="return navGo('location',event,this);">Location</a>
   <a href="#" onclick="showPage('bar');closeMobileNav();return false;">Bar & Restaurant</a>
-  <a href="#reservation" onclick="return navGo('reservation',event,this);">Reserve a Table</a>
+  <a href="#reservation" onclick="return navGo('reservation',event,this);">WhatsApp Inquiries</a>
 </div>
 
 <!-- ======= MAIN PAGE ======= -->
@@ -1956,10 +1956,10 @@ h1, h2, h3, h4, h5, h6,
 <!-- HERO — PISA TOWER BG -->
 <section id="hero">
   <div class="pisa-bg" id="pisaBg">
-    <video class="pisa-video-desktop" autoplay muted loop playsinline preload="auto">
+    <video class="pisa-video-desktop" data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/hero-bg.jpg">
       <source src="image/hero-bg.mp4.mp4" type="video/mp4">
     </video>
-    <video class="pisa-video-mobile" autoplay muted loop playsinline preload="auto">
+    <video class="pisa-video-mobile" data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/hero-bg.jpg">
       <source src="image/hero-mobile-bg.mp4" type="video/mp4">
     </video>
   </div>
@@ -1992,7 +1992,7 @@ h1, h2, h3, h4, h5, h6,
       </h1>
       <p class="hero-subtitle">Where centuries of authentic Italian culinary tradition meet the vibrant heart of Mount Lavinia. Every dish — a masterpiece. Every evening — unforgettable.</p>
       <div class="hero-actions">
-        <a href="#reservation" class="btn-primary"><i class="fas fa-utensils"></i> Reserve Your Table</a>
+        <a href="#reservation" class="btn-primary"><i class="fab fa-whatsapp"></i> Inquire on WhatsApp</a>
         <a href="#menu" class="btn-primary"><i class="fas fa-utensils"></i> Explore Our Menu</a>
       </div>
       <div class="hero-stats">
@@ -2021,7 +2021,7 @@ h1, h2, h3, h4, h5, h6,
   <div class="section-inner">
     <div class="exp-grid">
       <div class="exp-visual reveal">
-        <video src="image/hero2-bg.mp4" class="exp-main-img" autoplay muted loop playsinline preload="auto"></video>
+        <video src="image/hero2-bg.mp4" class="exp-main-img" data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/hero-bg.jpg"></video>
         <div class="exp-badge-card">
           <div class="num">12+</div>
           <div class="lbl">Years of Passion</div>
@@ -2066,7 +2066,7 @@ h1, h2, h3, h4, h5, h6,
     </div>
     <div class="menu-grid" id="menuGrid">
       <div class="menu-card reveal" data-cat="pizza" onclick="openDishModal(this)">
-        <video class="menu-card-img" src="image/pizza-menu-video.mp4" poster="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/ce/a7/e2/queue-up-for-the-bake.jpg?w=900&h=500&s=1" autoplay muted loop playsinline preload="metadata"></video>
+        <video class="menu-card-img" src="image/pizza-menu-video.mp4" data-loop-video poster="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/ce/a7/e2/queue-up-for-the-bake.jpg?w=900&h=500&s=1" autoplay muted loop playsinline preload="metadata"></video>
         <div class="menu-card-body">
           <div class="menu-card-cat">Pizza</div>
           <div class="menu-card-name">Margherita</div>
@@ -2199,7 +2199,7 @@ h1, h2, h3, h4, h5, h6,
           <div class="dining-card-tag">Private Dining</div>
           <h3>Private Dining Room</h3>
           <p>Warm Italian marble, soft candlelight, and the gentle hum of live music on weekends.</p>
-          <a href="#reservation">Reserve This Space <i class="fas fa-arrow-right"></i></a>
+          <a href="#reservation">Enquire About This Space <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:28px;">
@@ -2350,35 +2350,26 @@ h1, h2, h3, h4, h5, h6,
 
 <div class="italian-divider"></div>
 
-<!-- RESERVATION -->
+<!-- WHATSAPP INQUIRIES -->
 <section id="reservation" class="section flag-bg-section">
   <div class="section-inner">
     <div class="reservation-inner">
       <div class="text-center reveal">
-        <div class="section-badge"><span>Make a Reservation</span></div>
-        <h2 class="section-title">Reserve Your <span class="whrite">Table</span></h2>
+        <div class="section-badge"><span>Guest Inquiries</span></div>
+        <h2 class="section-title">How Can We <span class="whrite">Help?</span></h2>
         <div class="divider"></div>
-        <p class="section-subtitle">Join us for an unforgettable Italian dining experience. We look forward to welcoming you.</p>
+        <p class="section-subtitle">Ask us about our menu, upcoming events, private dining, or anything else. Our team will be happy to help you on WhatsApp.</p>
       </div>
       <div class="form-grid reveal">
-        <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" placeholder="Your first name"></div>
-        <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" placeholder="Your last name"></div>
-        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="your@email.com"></div>
-        <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" class="form-input" placeholder="+94 XX XXX XXXX"></div>
-        <div class="form-group"><label class="form-label">Date</label><input type="date" class="form-input"></div>
-        <div class="form-group"><label class="form-label">Time</label><input type="time" class="form-input"></div>
-        <div class="form-group"><label class="form-label">Number of Guests</label><select class="form-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div>
-        <div class="form-group"><label class="form-label">Number of Tables</label><select class="form-select" id="numTablesSelect"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div>
-        <div class="form-group"><label class="form-label">Dining Space</label><select class="form-select"><option>Main Dining Hall</option><option>2nd Floor</option><option>3rd Floor Private</option><option>Bar & Lounge</option></select></div>
-        <div class="form-group table-picker-group">
-          <input type="hidden" class="form-input" id="tableChoiceInput" placeholder="Table Preference">
-        </div>
-        <div class="form-group full"><label class="form-label">Special Requests</label><textarea class="form-textarea" placeholder="Anniversary, allergies, dietary requirements..."></textarea></div>
+        <div class="form-group"><label class="form-label" for="inquiryName">Your Name</label><input type="text" class="form-input" id="inquiryName" placeholder="Your name"></div>
+        <div class="form-group"><label class="form-label" for="inquiryPhone">Phone Number</label><input type="tel" class="form-input" id="inquiryPhone" placeholder="+94 XX XXX XXXX"></div>
+        <div class="form-group full"><label class="form-label" for="inquiryType">What can we help you with?</label><select class="form-select" id="inquiryType"><option>Menu and dining information</option><option>Upcoming events</option><option>Private dining</option><option>Something else</option></select></div>
+        <div class="form-group full"><label class="form-label" for="inquiryMessage">Your Inquiry</label><textarea class="form-textarea" id="inquiryMessage" placeholder="Tell us what you would like to know..."></textarea></div>
         <div class="form-group full" style="text-align:center;">
-          <button type="button" class="btn-whatsapp" onclick="sendMainReservationWhatsApp()" style="font-size:.9rem;padding:15px 46px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp"> Send Reservation via WhatsApp
+          <button type="button" class="btn-whatsapp" onclick="sendMainInquiryWhatsApp()" style="font-size:.9rem;padding:15px 46px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp"> Send Inquiry via WhatsApp
           </button>
-          <p style="margin-top:12px;font-size:.75rem;color:rgb(255, 255, 255);letter-spacing:1px;">Opens WhatsApp with your details pre-filled</p>
+          <p style="margin-top:12px;font-size:.75rem;color:rgb(255, 255, 255);letter-spacing:1px;">Your message will open in WhatsApp</p>
         </div>
       </div>
     </div>
@@ -2399,8 +2390,8 @@ h1, h2, h3, h4, h5, h6,
       </div>
     </div>
     <div class="footer-col"><h4>Explore</h4><ul><li><a href="#experience">Our Story</a></li><li><a href="#menu">The Menu</a></li><li><a href="#dining">Dining Spaces</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#" onclick="showPage('bar');return false;">Bar & Restaurant</a></li></ul></div>
-    <div class="footer-col"><h4>Reservations</h4><ul><li><a href="#reservation">Book a Table</a></li><li><a href="#reservation">Private Events</a></li><li><a href="#reservation">Corporate Dining</a></li><li><a href="#location">Contact Us</a></li></ul></div>
-    <div class="footer-col"><h4>Hours</h4><ul><li><a href="#">Mon–Thu: 08:30AM–22:00PM</a></li><li><a href="#">Fri–Sat: 08:30AM–22:00PM</a></li><li><a href="#">Sunday: 08:30AM–22:00PM</a></li><li><a href="#location">No.04 Hotel Road Mount Lavinia, Colombo</a></li><li><a href="tel:+94117000000">+94 11 XXX XXXX</a></li></ul></div>
+    <div class="footer-col"><h4>Inquiries</h4><ul><li><a href="#reservation">Menu Questions</a></li><li><a href="#reservation">Private Events</a></li><li><a href="#reservation">Private Dining</a></li><li><a href="#location">Contact Us</a></li></ul></div>
+    <div class="footer-col"><h4>Hours</h4><ul><li><a href="#">Mon–Thu: 08:30AM–22:00PM</a></li><li><a href="#">Fri–Sat: 08:30AM–22:00PM</a></li><li><a href="#">Sunday: 08:30AM–22:00PM</a></li><li><a href="#location">No.04 Hotel Road Mount Lavinia, Colombo</a></li><li><a href="tel:+94117000000">+94 11 272 0020</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 <span class="gold">Mama Roma</span> – Authentic Italian Cuisine. All rights reserved.</p>
@@ -2414,7 +2405,7 @@ h1, h2, h3, h4, h5, h6,
 <a href="#" class="back-btn" onclick="showPage('main');return false;"><i class="fas fa-arrow-left"></i> Back to Home</a>
 <div class="bar-hero">
   <div class="bar-hero-bg">
-    <video class="bar-hero-video" autoplay muted loop playsinline preload="auto">
+    <video class="bar-hero-video" data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/bar-picture.jpeg">
       <source src="image/bar-hero-bg.mp4" type="video/mp4">
     </video>
   </div>
@@ -2597,6 +2588,39 @@ document.querySelectorAll('[data-social]').forEach(function(link){
   }
 });
 
+// Keep background loops reliable without decoding every video at once.
+function initLoopVideos(){
+  const videos=document.querySelectorAll('video[data-loop-video]');
+  if(!videos.length) return;
+  const playVideo=function(video){
+    video.muted=true;
+    video.defaultMuted=true;
+    video.loop=true;
+    video.setAttribute('playsinline','');
+    if(video.readyState>=2){
+      const playback=video.play();
+      if(playback&&playback.catch) playback.catch(function(){});
+    }
+  };
+  const observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting) playVideo(entry.target);
+      else if(!entry.target.paused) entry.target.pause();
+    });
+  },{rootMargin:'160px 0px',threshold:0.01});
+  videos.forEach(function(video){
+    video.addEventListener('loadeddata',function(){
+      if(document.visibilityState==='visible') playVideo(video);
+    },{once:true});
+    observer.observe(video);
+  });
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='visible') videos.forEach(playVideo);
+    else videos.forEach(function(video){video.pause();});
+  });
+}
+initLoopVideos();
+
 // Preloader
 function hidePreloader(){
   var preloader=document.getElementById('preloader');
@@ -2705,21 +2729,20 @@ initReveal();
 var WHATSAPP_PHONE = '94761185530';
 
 // WhatsApp reservation — Main restaurant
-function sendMainReservationWhatsApp(){
-  const inputs=document.querySelectorAll('#reservation .form-input,#reservation .form-select,#reservation .form-textarea');
-  const fields=['First Name','Last Name','Email','Phone','Date','Time','Guests','Tables','Dining Space','Table Preference','Special Requests'];
-  // Basic validation — require at least Name and Phone
-  const nameVal=inputs[0]?inputs[0].value.trim():'';
-  const phoneVal=inputs[3]?inputs[3].value.trim():'';
+function sendMainInquiryWhatsApp(){
+  const nameVal=document.getElementById('inquiryName').value.trim();
+  const phoneVal=document.getElementById('inquiryPhone').value.trim();
+  const inquiryType=document.getElementById('inquiryType').value;
+  const inquiryMessage=document.getElementById('inquiryMessage').value.trim();
   if(!nameVal||!phoneVal){
-    alert('Please enter at least your name and phone number.');
+    alert('Please enter your name and phone number.');
     return;
   }
-  let msg='🍕 *Mama Roma – Table Reservation*\n\n';
-  inputs.forEach(function(el,i){
-    const v=el.value.trim();
-    if(v) msg+='*'+(fields[i]||'Note')+':* '+v+'\n';
-  });
+  let msg='*Mama Roma Guest Inquiry*\n\n';
+  msg+='*Name:* '+nameVal+'\n';
+  msg+='*Phone:* '+phoneVal+'\n';
+  msg+='*Topic:* '+inquiryType+'\n';
+  if(inquiryMessage) msg+='*Message:* '+inquiryMessage+'\n';
   msg+='\nSent from mamaromacolombo.com';
   var url='https://wa.me/'+WHATSAPP_PHONE+'?text='+encodeURIComponent(msg);
   window.open(url,'_blank');
@@ -3466,7 +3489,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <!-- BAR & RESTAURANT — "Opening Soon" popup (bar section temporarily closed) -->
 <div id="barSoonOverlay" onclick="if(event.target===this)closeBarSoon();">
   <div class="bar-soon-modal">
-    <video class="bar-soon-video" autoplay muted loop playsinline preload="auto">
+    <video class="bar-soon-video" data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/bar-picture.jpeg">
       <source src="image/bar-hero-bg.mp4" type="video/mp4">
     </video>
     <div class="bar-soon-inner">
