@@ -1932,7 +1932,7 @@ h1, h2, h3, h4, h5, h6,
   <div class="preloader-bg"></div>
   <div class="preloader-overlay"></div>
   <div class="preloader-content">
-  <img src="image/logo.png" alt="Mama Roma" class="preloader-logo">
+  <img src="image/logo-transparent.png" alt="Mama Roma" class="preloader-logo">
   <div class="preloader-bar"><div class="preloader-fill"></div></div>
   <p class="preloader-text">Crafting your Italian experience...</p>
   </div>
@@ -1960,7 +1960,7 @@ h1, h2, h3, h4, h5, h6,
 <nav id="navbar">
   <a href="#" class="nav-logo" onclick="showPage('main')">
     <div class="logo-shine-wrap">
-    <img src="image/logo.png" alt="Mama Roma">
+    <img src="image/logo-transparent.png" alt="Mama Roma">
   </div>
   </a>
   <ul class="nav-links">
@@ -2441,7 +2441,7 @@ h1, h2, h3, h4, h5, h6,
   <div class="italian-divider" style="margin-bottom:0;"></div>
   <div class="footer-grid" style="padding-top:50px;">
     <div class="footer-brand">
-      <img src="image/logo.png" alt="Mama Roma" class="footer-logo">
+      <img src="image/logo-transparent.png" alt="Mama Roma" class="footer-logo">
       <p>Mama Roma brings the authentic soul of Italy to Mount Lavinia, Colombo. Where every meal is a celebration of heritage, flavor, and warmth.</p>
       <div class="footer-social">
         <a href="#" class="social-link" data-social="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
@@ -2606,7 +2606,7 @@ h1, h2, h3, h4, h5, h6,
   <div class="italian-divider" style="margin-bottom:0;"></div>
   <div class="footer-grid" style="padding-top:50px;">
     <div class="footer-brand">
-      <img src="image/logo.png" alt="Mama Roma" class="footer-logo">
+      <img src="image/logo-transparent.png" alt="Mama Roma" class="footer-logo">
       <p>Mama Roma Bar & Restaurant — Premium cocktails meet Italian dining excellence above Mount Lavinia.</p>
     </div>
     <div class="footer-col"><h4>Bar Menu</h4><ul><li><a href="#">Beer Selection</a></li><li><a href="#">Wine Cellar</a></li><li><a href="#">Signature Cocktails</a></li><li><a href="#">Premium Spirits</a></li></ul></div>
@@ -2929,7 +2929,7 @@ function sendMainInquiryWhatsApp(){
   msg+='*Phone:* '+phoneVal+'\n';
   msg+='*Topic:* '+inquiryType+'\n';
   if(inquiryMessage) msg+='*Message:* '+inquiryMessage+'\n';
-  msg+='\n\nSent from www.mamaromaitalian.com\nMOUNT LAVINIA, Sri Lanka';
+  msg+='\nSent from mamaromacolombo.com';
   var url='https://wa.me/'+WHATSAPP_PHONE+'?text='+encodeURIComponent(msg);
   window.open(url,'_blank');
 }
@@ -2996,7 +2996,7 @@ function sendBarReservationWhatsApp(){
     const v=el.value.trim();
     if(v) msg+='*'+(fields[i]||'Note')+':* '+v+'\n';
   });
-  msg+='\n\nSent from www.mamaromaitalian.com\nMOUNT LAVINIA, Sri Lanka';
+  msg+='\nSent from mamaromacolombo.com';
   var url='https://wa.me/'+WHATSAPP_PHONE+'?text='+encodeURIComponent(msg);
   window.open(url,'_blank');
 }
