@@ -2098,125 +2098,39 @@ h1, h2, h3, h4, h5, h6,
       <p class="section-subtitle">From classic Roman pasta to authentic Neapolitan pizza — every dish a masterpiece crafted with love and tradition.</p>
     </div>
     <div class="menu-tabs reveal">
-      <button class="menu-tab active" onclick="filterMenu(this,'all')">All</button>
-            <button class="menu-tab" onclick="filterMenu(this,'pizza')">Pizza</button>
-      <button class="menu-tab" onclick="filterMenu(this,'antipasti')">Antipasti</button>
-      <button class="menu-tab" onclick="filterMenu(this,'pasta')">Pasta</button>
-      <button class="menu-tab" onclick="filterMenu(this,'mains')">Mains</button>
-      <button class="menu-tab" onclick="filterMenu(this,'Coffee')">Coffee</button>
-      <button class="menu-tab" onclick="filterMenu(this,'desserts')">Desserts</button>
+      <button class="menu-tab active" onclick="filterMenu(this,'all')">TUTTE LE SPECIALITÀ</button>
     </div>
     <div class="menu-grid" id="menuGrid">
-      <div class="menu-card reveal" data-cat="pizza" onclick="openDishModal(this)">
-        <video class="menu-card-img" src="image/pizza-menu-video.mp4" data-loop-video poster="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/ce/a7/e2/queue-up-for-the-bake.jpg?w=900&h=500&s=1" autoplay muted loop playsinline preload="metadata"></video>
+      <div class="menu-card reveal" data-cat="pizza" data-featured="1" onclick="openDishModal(this)">
+        <video class="menu-card-img" src="image/pizza-menu-video.mp4" data-loop-video poster="image/pizza-menu-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
         <div class="menu-card-body">
           <div class="menu-card-cat">Pizza</div>
           <div class="menu-card-name">Margherita</div>
           <div class="menu-card-desc">San Marzano tomatoes, fresh mozzarella, fragrant basil, extra virgin olive oil</div>
         </div>
       </div>
-      <div class="menu-card reveal" data-cat="pasta" onclick="openDishModal(this)">
-        <img src="https://www.recipesfromitaly.com/wp-content/uploads/2024/02/cacio-e-pepe-recipe-1200x1200-1-500x375.jpg" alt="Cacio e Pepe" class="menu-card-img" loading="lazy">
+      <div class="menu-card reveal" data-cat="pasta" data-featured="1" onclick="openDishModal(this)">
+        <video class="menu-card-img" src="image/pasta-menu-video.mp4" data-loop-video poster="image/pasta-menu-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
         <div class="menu-card-body">
           <div class="menu-card-cat">Pasta</div>
           <div class="menu-card-name">Cacio e Pepe</div>
           <div class="menu-card-desc">Tonnarelli, Pecorino Romano, aged Parmigiano, freshly cracked black pepper</div>
         </div>
       </div>
-      <div class="menu-card reveal" data-cat="antipasti" onclick="openDishModal(this)">
-        <img src="https://i0.wp.com/kaleforniakravings.com/wp-content/uploads/2024/02/Italian-antipasto-pasta-salad-7.jpg?resize=683%2C1024" alt="Bruschetta" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Antipasti</div>
-          <div class="menu-card-name">Bruschetta al Pomodoro</div>
-          <div class="menu-card-desc">Grilled sourdough, vine tomatoes, garlic, fresh basil, aged balsamic glaze</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="mains" onclick="openDishModal(this)">
-        <img src="https://media-cdn2.greatbritishchefs.com/media/d4kfc0bo/img78336.whqc_600x400q80.jpg" alt="Osso Buco" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Main Course</div>
-          <div class="menu-card-name">Osso Buco alla Milanese</div>
-          <div class="menu-card-desc">Braised veal shanks, saffron risotto, gremolata, slow-cooked for 4 hours</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="desserts" onclick="openDishModal(this)">
-        <img src="https://www.carluccios.com/cdn/shop/articles/Tiramisu_1d9de3f3-1f3d-40c4-bcab-b1c669a7616d.jpg?v=1752744640" alt="Tiramisu" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Desserts</div>
-          <div class="menu-card-name">Tiramisù Classico</div>
-          <div class="menu-card-desc">Savoiardi biscuits, mascarpone, espresso, Marsala, cocoa dusting</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="pasta" onclick="openDishModal(this)">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ412j-xNacDUgqHTRdAj45uUuJvZ0e26dRnojx_d578nYHsIiCwK2aTBQ&s=10" alt="Carbonara" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Pasta</div>
-          <div class="menu-card-name">Spaghetti alla Carbonara</div>
-          <div class="menu-card-desc">Guanciale, egg yolks, Pecorino Romano, a generous hand of black pepper</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="pizza" onclick="openDishModal(this)">
-        <img src="https://www.insidetherustickitchen.com/wp-content/uploads/2017/08/quattro-stagioni-pizza-3-1200px-inside-the-rustic-kitchen.jpg" alt="Diavola" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Pizza</div>
-          <div class="menu-card-name">Quattro Stagioni</div>
-          <div class="menu-card-desc">Spicy salami, San Marzano, fior di latte, chilli flakes, fresh basil</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="pizza" onclick="openDishModal(this)">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4sfsS2CA6G1R_NpldP7o2V23MQ3P8JFRktwqMcqntHOnxIjbfXXYttsw&s=10" alt="Caprese" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Pizza</div>
-          <div class="menu-card-name">Carbonara</div>
-          <div class="menu-card-desc">Buffalo mozzarella, heirloom tomatoes, fresh basil, aged balsamic, olive oil</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="desserts" onclick="openDishModal(this)">
-        <img src="https://images.unsplash.com/photo-1567171466295-4afa63d45416?w=500&q=80" alt="Panna Cotta" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Desserts</div>
-          <div class="menu-card-name">Panna Cotta al Lampone</div>
-          <div class="menu-card-desc">Silky vanilla panna cotta, fresh raspberry coulis, mint garnish</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="desserts" onclick="openDishModal(this)">
-        <img src="https://www.cookingclassy.com/wp-content/uploads/2021/05/panna-cotta-01.jpg" alt="Panna Cotta" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Desserts</div>
-          <div class="menu-card-name">Panna cotta</div>
-          <div class="menu-card-desc">a classic Northern Italian dessert made of sweetened cream that is thickened with gelatin and molded</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="Coffee" onclick="openDishModal(this)">
-        <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=700&q=80" alt="Espresso" class="menu-card-img" loading="lazy">
+      <div class="menu-card reveal" data-cat="Coffee" data-featured="1" onclick="openDishModal(this)">
+        <video class="menu-card-img" src="image/coffee-menu-video.mp4" data-loop-video poster="image/coffee-menu-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
         <div class="menu-card-body">
           <div class="menu-card-cat">Coffee</div>
           <div class="menu-card-name">Espresso</div>
           <div class="menu-card-desc">Rich, intense shot of pure Italian espresso, pulled fresh with a velvety crema</div>
         </div>
       </div>
-      <div class="menu-card reveal" data-cat="Coffee" onclick="openDishModal(this)">
-        <img src="https://www.gourmetkava.cz/modules/ph_simpleblog/featured/82.jpg" alt="Americano" class="menu-card-img" loading="lazy">
+      <div class="menu-card reveal" data-cat="desserts" data-featured="1" onclick="openDishModal(this)">
+        <video class="menu-card-img" src="image/tiramisu-menu-video.mp4" data-loop-video poster="image/tiramisu-menu-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
         <div class="menu-card-body">
-          <div class="menu-card-cat">Coffee</div>
-          <div class="menu-card-name">Americano</div>
-          <div class="menu-card-desc">Smooth espresso lengthened with hot water for a lighter, full-bodied cup</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="Coffee" onclick="openDishModal(this)">
-        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=700&q=80" alt="Cappuccino" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Coffee</div>
-          <div class="menu-card-name">Cappuccino</div>
-          <div class="menu-card-desc">Espresso topped with silky steamed milk and a delicate layer of foam</div>
-        </div>
-      </div>
-      <div class="menu-card reveal" data-cat="Coffee" onclick="openDishModal(this)">
-        <img src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=700&q=80" alt="Caffè Latte" class="menu-card-img" loading="lazy">
-        <div class="menu-card-body">
-          <div class="menu-card-cat">Coffee</div>
-          <div class="menu-card-name">Caffè Latte</div>
-          <div class="menu-card-desc">Espresso blended with steamed milk, smooth and lightly sweet</div>
+          <div class="menu-card-cat">Desserts</div>
+          <div class="menu-card-name">Tiramisù Classico</div>
+          <div class="menu-card-desc">Savoiardi biscuits, mascarpone, espresso, Marsala, cocoa dusting</div>
         </div>
       </div>
     </div>
@@ -3010,7 +2924,8 @@ function filterMenu(btn,cat){
   document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.menu-card').forEach(function(c){
-    c.style.display=(cat==='all'||c.dataset.cat===cat)?'block':'none';
+    var show=(cat==='all')?(c.dataset.featured==='1'):(c.dataset.cat===cat);
+    c.style.display=show?'block':'none';
   });
   var grid=document.getElementById('menuGrid');
   if(grid) grid.scrollLeft=0;
