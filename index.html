@@ -465,12 +465,12 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 /* ===== HERO ONLY: Italian-flag word colors + old trattoria-style buttons & stat plaque ===== */
 #hero .hero-title{color:#ffffff;text-shadow:0 2px 4px rgba(0,0,0,.65),0 0 28px rgba(0,0,0,.4);letter-spacing:.5px;}
 #hero .hero-title .green{background:linear-gradient(120deg,#1c9a4e 0%,#0f7a3a 40%,#1c9a4e 70%,#0a5c2b 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#1c9a4e;filter:drop-shadow(0 0 8px rgba(28,154,78,.35));}
-#hero .hero-title .red{background:linear-gradient(120deg,#ff5a5f 0%,#ff1f36 35%,#ff5a5f 65%,#ff1f36 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#ff1f36;}
+#hero .hero-title .red{background:none;-webkit-text-fill-color:#ffffff;color:#ffffff;text-shadow:0 0 18px rgba(255,255,255,.72),0 2px 4px rgba(0,0,0,.55);}
 #hero .hero-title .gold{background:none;-webkit-text-fill-color:#ffffff;color:#ffffff;}
 #hero .hero-title::after{content:'';display:block;width:96px;height:4px;margin:18px auto 0;background:linear-gradient(90deg,#0f7a3a 0 33.33%,#fffdf6 33.33% 66.66%,#c11f2b 66.66% 100%);border-radius:2px;box-shadow:0 1px 6px rgba(0,0,0,.4);}
 #hero .hero-title{font-size:0;margin-bottom:22px;}
 #hero .hero-title-main{display:block;font-family:'Bodoni FLF','Bodoni Moda',var(--font-h);font-weight:700;font-style:normal;font-size:clamp(3.2rem,9vw,7rem);line-height:.95;letter-spacing:0px;}
-#hero .hero-title-sub{display:block;font-family:var(--font-h);font-weight:700;font-style:normal;font-size:clamp(1rem,2.6vw,1.5rem);letter-spacing:4px;text-transform:uppercase;color:#fffdf7;text-shadow:0 0 12px rgba(255,255,255,.5),0 2px 4px rgba(0,0,0,.6);margin-top:16px;}
+#hero .hero-title-sub{display:block;font-family:var(--font-h);font-weight:700;font-style:normal;font-size:clamp(1rem,2.6vw,1.5rem);letter-spacing:4px;text-transform:uppercase;color:#ffffff;text-shadow:0 0 16px rgba(255,255,255,.82),0 0 30px rgba(255,255,255,.42),0 2px 4px rgba(0,0,0,.68);margin-top:16px;}
 #hero .hero-title-sub .green{filter:none;-webkit-text-fill-color:#3ee883;background:none;text-shadow:0 0 14px rgba(62,232,131,.7),0 0 28px rgba(62,232,131,.4);}
 #hero .hero-deco{display:flex;align-items:center;justify-content:center;gap:16px;}
 #hero .hero-deco-line{display:inline-block;width:52px;height:1px;background:linear-gradient(90deg,transparent,rgba(242,201,107,.75));}
@@ -506,7 +506,7 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 #hero .hero-actions .btn-primary:nth-child(2):hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.32),inset 0 -1px 0 rgba(0,0,0,.15),0 10px 26px rgba(0,0,0,.35),0 0 64px rgba(193,31,43,.8);}
 #hero .hero-stats{gap:0;border:none;background:transparent;}
 #hero .stat-item{flex:1 1 0;min-width:96px;padding:0 22px;position:relative;}
-#hero .stat-num{font-style:italic;}
+#hero .stat-num{font-family:'Bodoni Moda','Times New Roman',serif;font-style:normal;font-weight:800;letter-spacing:.03em;}
 #hero .stat-num.g{color:#2fbf6a;text-shadow:0 0 10px rgba(47,191,106,.35);}
 #hero .stat-num.r{color:#e0454f;text-shadow:0 0 10px rgba(224,69,79,.35);}
 #hero .stat-num.go{color:#fffdf6;text-shadow:0 0 10px rgba(255,253,246,.35);}
@@ -1538,7 +1538,14 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
 
 @media(max-width:768px){
   .flag-bg-section{background-attachment:scroll !important;}
-  .nav-logo img{height:70px;}
+  #navbar{
+    padding:5px 4%;
+    background:rgba(20,15,11,0.78);
+    backdrop-filter:blur(12px) saturate(140%);
+    -webkit-backdrop-filter:blur(12px) saturate(140%);
+  }
+  .nav-logo img{height:48px;}
+  .logo-shine-wrap{padding:6px 10px 15px;}
   .preloader-logo{width:280px;}
 
   .nav-links{display:none;}
@@ -1646,7 +1653,7 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
 
   /* Small phones (iPhone SE / small Android): tighten fonts, spacing, media */
   .preloader-logo{width:180px;}
-  .nav-logo img{height:56px;}
+  .nav-logo img{height:44px;}
   .hero-content{padding-top:82px;}
   .hero-title{font-size:clamp(2.42rem,9.54vw,2.99rem);}
   .hero-subtitle{font-size:1rem;margin-bottom:16px;line-height:1.5;}
