@@ -67,7 +67,7 @@
 <link rel="apple-touch-icon" href="image/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Oswald:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Caveat:wght@500;600;700&family=Calistoga&family=Climate+Crisis&family=Bodoni+Moda:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Jost:wght@300;400;500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Caveat:wght@500;600;700&family=Climate+Crisis&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -115,15 +115,7 @@ h1,h2,h3,h4,h5,h6{color:var(--black);font-weight:600;}
 .flag-bg-section h1,.flag-bg-section h2,.flag-bg-section h3{color:#ffffff;}
 html{scroll-behavior:smooth;overflow-x:hidden;background:#0d0906;scroll-padding-top:100px;}
 @media (max-width:768px){html{scroll-padding-top:80px;}}
-body{font-family:var(--font-b);font-weight:400;letter-spacing:.2px;background-color:var(--espresso);background-image:
-    linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.42)),
-    url('https://as2.ftcdn.net/v2/jpg/12/64/95/47/1000_F_1264954782_933FxafBZkREfMFZgUm1r1cOGCWrETzQ.jpg'),
-    url('https://as2.ftcdn.net/v2/jpg/17/12/40/51/1000_F_1712405169_zH21rQULUZR2K9kbDErSq0NvMm6hyd2h.jpg');
-  background-position: center center, center center, center center;
-  background-size: cover, cover, cover;
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-attachment: fixed, fixed, fixed;
-  color:var(--cream);overflow-x:hidden;}
+body{font-family:var(--font-b);font-weight:400;letter-spacing:.2px;background-color:var(--espresso);color:var(--cream);overflow-x:hidden;}
 /* Global safety net: images/videos never overflow their container on any screen size */
 img,video,iframe,svg{max-width:100%;}
 img{height:auto;}
@@ -2062,11 +2054,11 @@ h1, h2, h3, h4, h5, h6,
 <!-- HERO — PISA TOWER BG -->
 <section id="hero">
   <div class="pisa-bg" id="pisaBg">
-    <video class="pisa-video-desktop" data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/hero-bg.jpg">
-      <source src="image/hero-bg.mp4.mp4" type="video/mp4">
+    <video class="pisa-video-desktop" data-loop-video autoplay muted loop playsinline preload="none" poster="image/hero-bg.jpg">
+      <source data-src="image/hero-bg.mp4.mp4" type="video/mp4">
     </video>
-    <video class="pisa-video-mobile" data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/hero-bg.jpg">
-      <source src="image/hero-mobile-bg.mp4" type="video/mp4">
+    <video class="pisa-video-mobile" data-loop-video autoplay muted loop playsinline preload="none" poster="image/hero-bg.jpg">
+      <source data-src="image/hero-mobile-bg.mp4" type="video/mp4">
     </video>
   </div>
   <div class="pisa-color-wash"></div>
@@ -2124,7 +2116,7 @@ h1, h2, h3, h4, h5, h6,
   <div class="section-inner">
     <div class="exp-grid">
       <div class="exp-visual reveal">
-        <video src="image/hero2-bg.mp4" class="exp-main-img" data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/hero-bg.jpg"></video>
+        <video data-src="image/hero2-bg.mp4" class="exp-main-img" data-loop-video autoplay muted loop playsinline preload="none" poster="image/hero-bg.jpg"></video>
         <div class="exp-badge-card">
           <div class="num">12+</div>
           <div class="lbl">Years of Passion</div>
@@ -2179,7 +2171,7 @@ Come for the pizza. Stay for the experience..</p>
     </div>
     <div class="menu-grid" id="menuGrid">
       <div class="menu-card reveal" data-cat="pizza" data-featured="1" onclick="openDishModal(this)">
-        <video class="menu-card-img" src="image/pizza-menu-video.mp4" data-loop-video poster="image/pizza-menu-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        <video class="menu-card-img" data-src="image/pizza-menu-video.mp4" data-loop-video poster="image/hero-bg.jpg" autoplay muted loop playsinline preload="none"></video>
         <div class="menu-card-body">
           <div class="menu-card-cat">Pizza</div>
           <div class="menu-card-name">Margherita</div>
@@ -2187,7 +2179,7 @@ Come for the pizza. Stay for the experience..</p>
         </div>
       </div>
       <div class="menu-card reveal" data-cat="pasta" data-featured="1" onclick="openDishModal(this)">
-        <video class="menu-card-img" src="image/pasta-menu-video.mp4" data-loop-video poster="image/pasta-menu-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        <video class="menu-card-img" data-src="image/pasta-menu-video.mp4" data-loop-video poster="image/pasta-menu-poster.jpg" autoplay muted loop playsinline preload="none"></video>
         <div class="menu-card-body">
           <div class="menu-card-cat">Pasta</div>
           <div class="menu-card-name">Cacio e Pepe</div>
@@ -2195,7 +2187,7 @@ Come for the pizza. Stay for the experience..</p>
         </div>
       </div>
       <div class="menu-card reveal" data-cat="Coffee" data-featured="1" onclick="openDishModal(this)">
-        <video class="menu-card-img" src="image/coffee.mp4.mp4" data-loop-video poster="image/coffee-menu-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        <video class="menu-card-img" data-src="image/coffee.mp4.mp4" data-loop-video poster="image/coffee-menu-poster.jpg" autoplay muted loop playsinline preload="none"></video>
         <div class="menu-card-body">
           <div class="menu-card-cat">Coffee</div>
           <div class="menu-card-name">Espresso</div>
@@ -2203,7 +2195,7 @@ Come for the pizza. Stay for the experience..</p>
         </div>
       </div>
       <div class="menu-card reveal" data-cat="desserts" data-featured="1" onclick="openDishModal(this)">
-        <video class="menu-card-img" src="image/tiramisu-menu-video.mp4" data-loop-video poster="image/tiramisu-menu-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        <video class="menu-card-img" data-src="image/tiramisu-menu-video.mp4" data-loop-video poster="image/tiramisu-menu-poster.jpg" autoplay muted loop playsinline preload="none"></video>
         <div class="menu-card-body">
           <div class="menu-card-cat">Desserts</div>
           <div class="menu-card-name">Tiramisù Classico</div>
@@ -2458,8 +2450,8 @@ Come for the pizza. Stay for the experience..</p>
 <a href="#" class="back-btn" onclick="showPage('main');return false;"><i class="fas fa-arrow-left"></i> Back to Home</a>
 <div class="bar-hero">
   <div class="bar-hero-bg">
-    <video class="bar-hero-video" data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/bar-picture.jpeg">
-      <source src="image/bar-hero-bg.mp4" type="video/mp4">
+    <video class="bar-hero-video" data-loop-video autoplay muted loop playsinline preload="none" poster="image/bar-picture.jpeg">
+      <source data-src="image/bar-hero-bg.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-italian-accent"></div>
@@ -2617,8 +2609,8 @@ Come for the pizza. Stay for the experience..</p>
 <a href="#" class="back-btn" onclick="showPage('main');return false;"><i class="fas fa-arrow-left"></i> Back to Home</a>
 <div class="bar-hero">
   <div class="bar-hero-bg">
-    <video class="bar-hero-video" data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/g%20floor.png">
-      <source src="image/cafe-loop (1).mp4" type="video/mp4">
+    <video class="bar-hero-video" data-loop-video autoplay muted loop playsinline preload="none" poster="image/g%20floor.png">
+      <source data-src="image/cafe-loop (1).mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-italian-accent"></div>
@@ -2635,8 +2627,8 @@ Come for the pizza. Stay for the experience..</p>
 <div class="italian-divider"></div>
 
 <section class="coffee-showcase" aria-label="Italian coffee">
-  <video data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/g%20floor.png">
-    <source src="image/coffee.mp4.mp4" type="video/mp4">
+  <video data-loop-video autoplay muted loop playsinline preload="none" poster="image/g%20floor.png">
+    <source data-src="image/coffee.mp4.mp4" type="video/mp4">
   </video>
   <div class="coffee-showcase-content reveal">
     <h2 class="tiramisu-showcase-title">Caffè Italiano</h2>
@@ -2660,8 +2652,8 @@ Come for the pizza. Stay for the experience..</p>
 <div class="italian-divider"></div>
 
 <section class="tiramisu-showcase" aria-label="Tiramisù Classico">
-  <video data-loop-video autoplay muted loop playsinline preload="metadata" poster="image/bar-picture.jpeg">
-    <source src="image/vecteezy_close-up-on-a-portion-of-gourmet-tiramisu-italian-dessert_54527275.mp4" type="video/mp4">
+  <video data-loop-video autoplay muted loop playsinline preload="none" poster="image/bar-picture.jpeg">
+    <source data-src="image/vecteezy_close-up-on-a-portion-of-gourmet-tiramisu-italian-dessert_54527275.mp4" type="video/mp4">
   </video>
   <div class="tiramisu-showcase-content reveal">
     <h2 class="tiramisu-showcase-title">Tiramisù Classico</h2>
@@ -2761,8 +2753,23 @@ document.querySelectorAll('[data-social]').forEach(function(link){
 function initLoopVideos(){
   const videos=document.querySelectorAll('video[data-loop-video]');
   if(!videos.length) return;
+  const loadVideo=function(video){
+    let shouldLoad=false;
+    if(video.dataset.src){
+      video.src=video.dataset.src;
+      delete video.dataset.src;
+      shouldLoad=true;
+    }
+    video.querySelectorAll('source[data-src]').forEach(function(source){
+      source.src=source.dataset.src;
+      source.removeAttribute('data-src');
+      shouldLoad=true;
+    });
+    if(shouldLoad) video.load();
+  };
   const playVideo=function(video){
     if(video.offsetParent===null) return;
+    loadVideo(video);
     video.muted=true;
     video.defaultMuted=true;
     video.loop=true;
