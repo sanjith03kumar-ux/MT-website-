@@ -2812,6 +2812,37 @@ function initLoopVideos(){
 }
 initLoopVideos();
 
+function initHeroBackgroundVideo(){
+  var heroVideos=Array.prototype.slice.call(document.querySelectorAll('#pisaBg video'));
+  if(!heroVideos.length) return;
+  var startVisibleHeroVideo=function(){
+    heroVideos.forEach(function(video){
+      if(video.offsetParent===null) return;
+      video.muted=true;
+      video.defaultMuted=true;
+      video.loop=true;
+      video.setAttribute('playsinline','');
+      if(video.readyState===0) video.load();
+      var playback=video.play();
+      if(playback&&playback.catch) playback.catch(function(){
+        video.load();
+        video.play().catch(function(){});
+      });
+    });
+  };
+  heroVideos.forEach(function(video){
+    video.addEventListener('loadedmetadata',startVisibleHeroVideo);
+    video.addEventListener('canplay',startVisibleHeroVideo);
+  });
+  window.addEventListener('pageshow',startVisibleHeroVideo);
+  window.addEventListener('resize',startVisibleHeroVideo);
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='visible') startVisibleHeroVideo();
+  });
+  startVisibleHeroVideo();
+}
+initHeroBackgroundVideo();
+
 // Preloader
 function hidePreloader(){
   var preloader=document.getElementById('preloader');
