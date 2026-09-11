@@ -2065,7 +2065,7 @@ h1, h2, h3, h4, h5, h6,
 <section id="hero">
   <div class="pisa-bg" id="pisaBg">
     <video class="pisa-video-desktop" data-loop-video autoplay muted loop playsinline preload="metadata" fetchpriority="high" poster="image/hero-bg.jpg">
-      <source src="image/hero-bg.mp4.mp4" type="video/mp4">
+      <source src="image/hero-bg.mp4" type="video/mp4">
     </video>
     <video class="pisa-video-mobile" data-loop-video autoplay muted loop playsinline preload="metadata" fetchpriority="high" poster="image/hero-bg.jpg">
       <source src="image/hero-mobile-bg.mp4" type="video/mp4">
@@ -2197,7 +2197,7 @@ Come for the pizza. Stay for the experience..</p>
         </div>
       </div>
       <div class="menu-card reveal" data-cat="Coffee" data-featured="1" onclick="openDishModal(this)">
-        <video class="menu-card-img" data-src="image/coffee.mp4.mp4" data-loop-video poster="image/coffee-menu-poster.jpg" autoplay muted loop playsinline preload="none"></video>
+        <video class="menu-card-img" data-src="image/coffee.mp4" data-loop-video poster="image/coffee-menu-poster.jpg" autoplay muted loop playsinline preload="none"></video>
         <div class="menu-card-body">
           <div class="menu-card-cat">Coffee</div>
           <div class="menu-card-name">Espresso</div>
@@ -2301,7 +2301,7 @@ Come for the pizza. Stay for the experience..</p>
       <div class="gallery-item"><img src="https://romasitalianeasttx.com/wp-content/uploads/2023/06/RibeyePlatter-1.jpg" alt="Italian pasta plate" loading="lazy"></div>
       <div class="gallery-item"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1000&q=80" alt="Delicious pizza slice" loading="lazy"></div>
       <div class="gallery-item"><img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=1000&q=80" alt="Dessert presentation" loading="lazy"></div>
-      <div class="gallery-item"><img src="https://www.carluccios.com/cdn/shop/articles/Tiramisu_1d9de3f3-1f3d-40c4-bcab-b1c669a7616d.jpg?v=1752744640 " alt="Italian dining experience" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://www.carluccios.com/cdn/shop/articles/Tiramisu_1d9de3f3-1f3d-40c4-bcab-b1c669a7616d.jpg?v=1752744640" alt="Italian dining experience" loading="lazy"></div>
       <div class="gallery-item"><img src="https://treasurecoastfoodie.com/wp-content/uploads/2024/02/20240207_160545-EDIT-1024x603.jpg" alt="Italian dining experience" loading="lazy"></div>
     </div>
   </div>
@@ -2331,6 +2331,7 @@ Come for the pizza. Stay for the experience..</p>
       </div>
     </div>
     <div class="reviews-marquee-wrap reveal">
+      <div id="fbLoading" style="display:none;text-align:center;padding:10px 0;color:var(--cream);opacity:.75;font-size:.9rem;"><i class="fas fa-circle-notch fa-spin"></i> Loading guest feedback…</div>
       <div class="reviews-marquee-track" id="reviewsMarqueeTrack">
         <div class="reviews-set" id="reviewsSetA">
           <div class="review-card">
@@ -2620,7 +2621,7 @@ Come for the pizza. Stay for the experience..</p>
 <div class="bar-hero">
   <div class="bar-hero-bg">
     <video class="bar-hero-video" data-loop-video autoplay muted loop playsinline preload="none" poster="image/g%20floor.png">
-      <source data-src="image/cafe-loop (1).mp4" type="video/mp4">
+      <source data-src="image/cafe-loop%20(1).mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-italian-accent"></div>
@@ -2638,7 +2639,7 @@ Come for the pizza. Stay for the experience..</p>
 
 <section class="coffee-showcase" aria-label="Italian coffee">
   <video data-loop-video autoplay muted loop playsinline preload="none" poster="image/g%20floor.png">
-    <source data-src="image/coffee.mp4.mp4" type="video/mp4">
+    <source data-src="image/coffee.mp4" type="video/mp4">
   </video>
   <div class="coffee-showcase-content reveal">
     <h2 class="tiramisu-showcase-title">Caffè Italiano</h2>
@@ -2844,6 +2845,13 @@ function initHeroBackgroundVideo(){
 initHeroBackgroundVideo();
 
 // Preloader
+// FIX: previously the preloader hid itself 60ms after DOMContentLoaded,
+// long before images/fonts/videos had actually finished loading — that's
+// why the page used to "pop in" piece by piece instead of appearing all
+// at once. Now it waits for the window 'load' event (fonts + eager images
+// finished), with a minimum display time so the loading animation doesn't
+// just flash, and a maximum wait so a single slow asset can never trap
+// the visitor on the loading screen.
 function hidePreloader(){
   var preloader=document.getElementById('preloader');
   if(preloader && !preloader.classList.contains('hidden')){
@@ -2851,13 +2859,21 @@ function hidePreloader(){
   }
 }
 function startPreloader(){
-  setTimeout(hidePreloader, 60);
+  var MIN_DISPLAY=900, MAX_WAIT=4500, start=Date.now(), finished=false;
+  function finish(){
+    if(finished) return;
+    finished=true;
+    var wait=Math.max(0, MIN_DISPLAY-(Date.now()-start));
+    setTimeout(hidePreloader, wait);
+  }
+  if(document.readyState==='complete'){
+    finish();
+  }else{
+    window.addEventListener('load', finish, {once:true});
+  }
+  setTimeout(finish, MAX_WAIT);
 }
-if(document.readyState === 'loading'){
-  document.addEventListener('DOMContentLoaded', startPreloader, {once:true});
-}else{
-  startPreloader();
-}
+startPreloader();
 if(document.readyState === 'complete' || document.readyState === 'interactive'){
   setTimeout(startPreloader, 0);
 }else{
