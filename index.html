@@ -1189,6 +1189,34 @@ body .social-link[data-social="youtube"]:hover{background:#FF0000;border-color:#
 }
 .bar-soon-modal h3{font-family:var(--font-h);font-weight:800;font-size:1.61rem;color:var(--cream);margin-bottom:10px;}
 .bar-soon-modal p{font-size:1.06rem;color:rgba(43,36,29,0.86);line-height:1.6;margin-bottom:22px;}
+.grand-opening-subtitle{font-family:var(--font-h);font-size:.94rem!important;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light)!important;margin-bottom:24px!important;}
+.grand-opening-countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 24px;}
+.countdown-unit{padding:12px 5px 10px;background:rgba(255,255,255,0.07);border:1px solid rgba(201,168,76,0.28);border-radius:8px;}
+.countdown-value{display:block;font-family:var(--font-h);font-size:1.7rem;line-height:1.1;font-weight:800;color:var(--cream);font-variant-numeric:tabular-nums;}
+.countdown-label{display:block;margin-top:5px;font-size:.63rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);}
+.grand-opening-message{margin-bottom:0!important;}
+.hero-opening-countdown{width:min(100%,620px);margin:26px auto 0;padding:18px 20px 20px;background:rgba(8,5,3,.56);border:1px solid rgba(242,201,107,.55);border-top:2px solid var(--gold);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.25);text-align:center;}
+.hero-opening-title{margin:0 0 3px;font-family:var(--font-h);font-size:1.02rem;letter-spacing:.18em;font-weight:800;color:#fff;}
+.hero-opening-subtitle{margin:0 0 14px;font-family:var(--font-h);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#f2d98d;}
+.hero-opening-countdown .grand-opening-countdown{margin-bottom:0;}
+.hero-opening-countdown .countdown-unit{background:rgba(255,255,255,.08);}
+.hero-opening-countdown .countdown-value{color:#fff;}
+.hero-opening-countdown .countdown-label{color:#f2d98d;}
+.opening-countdown-only{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at center,rgba(64,38,22,.5),rgba(8,5,3,.98) 72%),var(--espresso);color:var(--cream);text-align:center;}
+.opening-countdown-only[hidden]{display:none;}
+.opening-countdown-only-inner{width:min(100%,680px);}
+.opening-countdown-only-title{margin:0;font-family:var(--font-h);font-size:clamp(1.3rem,4vw,2.2rem);letter-spacing:.2em;font-weight:800;color:#fff;}
+.opening-countdown-only-subtitle{margin:10px 0 28px;font-family:var(--font-h);font-size:clamp(.8rem,2vw,1rem);letter-spacing:.12em;text-transform:uppercase;color:#fff;}
+.opening-countdown-only .grand-opening-countdown{margin:0;}
+.opening-countdown-only .countdown-unit{background:rgba(255,255,255,.06);padding:18px 5px 15px;}
+.opening-countdown-only .countdown-value{font-size:clamp(1.8rem,6vw,3.2rem);color:#fff;}
+.opening-countdown-only .countdown-label{font-size:.7rem;color:#fff;}
+.countdown-unit:nth-child(1) .countdown-value{color:#55df8b;text-shadow:0 0 14px rgba(85,223,139,.65);}
+.countdown-unit:nth-child(2) .countdown-value{color:#fff7df;text-shadow:0 0 14px rgba(255,247,223,.55);}
+.countdown-unit:nth-child(3) .countdown-value{color:#ff9270;text-shadow:0 0 14px rgba(255,146,112,.62);}
+.countdown-unit:nth-child(4) .countdown-value{color:#f6cf69;text-shadow:0 0 14px rgba(246,207,105,.68);}
+body.pre-opening{overflow:hidden;}
+body.pre-opening> :not(#openingCountdownOnly){display:none!important;}
 .bar-soon-modal .btn-primary{display:inline-flex;}
 .table-modal{
   position:relative;max-width:760px;width:100%;
@@ -1989,7 +2017,20 @@ h1, h2, h3, h4, h5, h6,
 
 </style>
 </head>
-<body>
+<body class="pre-opening">
+
+<div id="openingCountdownOnly" class="opening-countdown-only" aria-label="Mama Roma Grand Opening countdown">
+  <div class="opening-countdown-only-inner">
+    <h1 class="opening-countdown-only-title" id="openingOnlyTitle">GRAND OPENING · MAMA ROMA</h1>
+    <p class="opening-countdown-only-subtitle" id="openingOnlySubtitle">Authentic Italian Cuisine – Mount Lavinia</p>
+    <div class="grand-opening-countdown">
+      <div class="countdown-unit"><strong id="openingOnlyDays" class="countdown-value">0</strong><span class="countdown-label">Days</span></div>
+      <div class="countdown-unit"><strong id="openingOnlyHours" class="countdown-value">00</strong><span class="countdown-label">Hours</span></div>
+      <div class="countdown-unit"><strong id="openingOnlyMinutes" class="countdown-value">00</strong><span class="countdown-label">Minutes</span></div>
+      <div class="countdown-unit"><strong id="openingOnlySeconds" class="countdown-value">00</strong><span class="countdown-label">Seconds</span></div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -2094,6 +2135,16 @@ h1, h2, h3, h4, h5, h6,
         <span class="hero-title-sub">Authentic Italian Restaurant <span class="green">&amp;</span> Sportsbar</span>
       </h1>
       <p class="hero-subtitle">Where centuries of authentic Italian culinary tradition meet the vibrant heart of <span class="hero-subtitle-accent">Mount Lavinia</span>. Every dish — a masterpiece. Every evening — unforgettable.</p>
+      <div class="hero-opening-countdown" id="heroGrandOpeningCountdown" aria-label="Mama Roma Grand Opening countdown">
+        <h2 class="hero-opening-title" id="heroGrandOpeningTitle">GRAND OPENING</h2>
+        <p class="hero-opening-subtitle" id="heroGrandOpeningSubtitle">MAMA ROMA · Authentic Italian Cuisine – Mount Lavinia</p>
+        <div class="grand-opening-countdown">
+          <div class="countdown-unit"><strong id="heroGrandOpeningDays" class="countdown-value">0</strong><span class="countdown-label">Days</span></div>
+          <div class="countdown-unit"><strong id="heroGrandOpeningHours" class="countdown-value">00</strong><span class="countdown-label">Hours</span></div>
+          <div class="countdown-unit"><strong id="heroGrandOpeningMinutes" class="countdown-value">00</strong><span class="countdown-label">Minutes</span></div>
+          <div class="countdown-unit"><strong id="heroGrandOpeningSeconds" class="countdown-value">00</strong><span class="countdown-label">Seconds</span></div>
+        </div>
+      </div>
       <div class="hero-actions">
         <a href="#reservation" class="btn-primary"><i class="fab fa-whatsapp"></i> Inquire on WhatsApp</a>
         <a href="#menu" class="btn-primary"><i class="fas fa-utensils"></i> Explore Our Menu</a>
@@ -2960,6 +3011,62 @@ function closeBarSoon(){
   setTimeout(function(){overlay.style.display='none';},300);
 }
 
+function initGrandOpeningCountdown(){
+  const targetTime=Date.parse('2026-09-23T12:00:00+05:30');
+  const countdown=document.getElementById('grandOpeningCountdown');
+  const title=document.getElementById('grandOpeningTitle');
+  const subtitle=document.getElementById('grandOpeningSubtitle');
+  const message=document.getElementById('grandOpeningMessage');
+  const heroCountdown=document.getElementById('heroGrandOpeningCountdown');
+  const heroTitle=document.getElementById('heroGrandOpeningTitle');
+  const heroSubtitle=document.getElementById('heroGrandOpeningSubtitle');
+  const openingOnly=document.getElementById('openingCountdownOnly');
+  const openingOnlyTitle=document.getElementById('openingOnlyTitle');
+  const openingOnlySubtitle=document.getElementById('openingOnlySubtitle');
+  if(!countdown || !title || !subtitle || !message || !heroCountdown || !heroTitle || !heroSubtitle || !openingOnly) return;
+  let timer;
+
+  function updateCountdown(){
+    const remaining=Math.max(0,targetTime-Date.now());
+    if(remaining===0){
+      title.textContent='BENVENUTI — WE ARE NOW OPEN';
+      heroTitle.textContent='BENVENUTI — WE ARE NOW OPEN';
+      openingOnlyTitle.textContent='BENVENUTI — WE ARE NOW OPEN';
+      subtitle.hidden=true;
+      countdown.hidden=true;
+      message.hidden=true;
+      heroSubtitle.hidden=true;
+      heroCountdown.querySelector('.grand-opening-countdown').hidden=true;
+      openingOnlySubtitle.hidden=true;
+      openingOnly.hidden=true;
+      document.body.classList.remove('pre-opening');
+      window.clearInterval(timer);
+      return;
+    }
+    const totalSeconds=Math.floor(remaining/1000);
+    const days=Math.floor(totalSeconds/86400);
+    const hours=Math.floor((totalSeconds%86400)/3600);
+    const minutes=Math.floor((totalSeconds%3600)/60);
+    const seconds=totalSeconds%60;
+    document.getElementById('grandOpeningDays').textContent=String(days);
+    document.getElementById('grandOpeningHours').textContent=String(hours).padStart(2,'0');
+    document.getElementById('grandOpeningMinutes').textContent=String(minutes).padStart(2,'0');
+    document.getElementById('grandOpeningSeconds').textContent=String(seconds).padStart(2,'0');
+    document.getElementById('heroGrandOpeningDays').textContent=String(days);
+    document.getElementById('heroGrandOpeningHours').textContent=String(hours).padStart(2,'0');
+    document.getElementById('heroGrandOpeningMinutes').textContent=String(minutes).padStart(2,'0');
+    document.getElementById('heroGrandOpeningSeconds').textContent=String(seconds).padStart(2,'0');
+    document.getElementById('openingOnlyDays').textContent=String(days);
+    document.getElementById('openingOnlyHours').textContent=String(hours).padStart(2,'0');
+    document.getElementById('openingOnlyMinutes').textContent=String(minutes).padStart(2,'0');
+    document.getElementById('openingOnlySeconds').textContent=String(seconds).padStart(2,'0');
+  }
+
+  updateCountdown();
+  timer=window.setInterval(updateCountdown,1000);
+}
+document.addEventListener('DOMContentLoaded',initGrandOpeningCountdown);
+
 // Reveal — all variants
 function initReveal(){
   const selectors='.reveal:not(.visible),.reveal-left:not(.visible),.reveal-right:not(.visible),.reveal-scale:not(.visible)';
@@ -3738,8 +3845,15 @@ document.addEventListener('DOMContentLoaded', function(){
   <div class="bar-soon-modal">
     <button class="bar-soon-close" onclick="closeBarSoon()" aria-label="Close"><i class="fas fa-times"></i></button>
     <div class="bar-soon-icon"><i class="fas fa-glass-cheers"></i></div>
-    <h3>Opening Soon</h3>
-    <p>Our Sport Bar on the 2nd floor is being prepared for you and isn't open just yet. Please check back soon — in the meantime, we'd love to host you in the main restaurant.</p>
+    <h3 id="grandOpeningTitle">GRAND OPENING<br>MAMA ROMA</h3>
+    <p id="grandOpeningSubtitle" class="grand-opening-subtitle">Authentic Italian Cuisine – Mount Lavinia</p>
+    <div id="grandOpeningCountdown" class="grand-opening-countdown" aria-label="Countdown to the grand opening">
+      <div class="countdown-unit"><strong id="grandOpeningDays" class="countdown-value">0</strong><span class="countdown-label">Days</span></div>
+      <div class="countdown-unit"><strong id="grandOpeningHours" class="countdown-value">00</strong><span class="countdown-label">Hours</span></div>
+      <div class="countdown-unit"><strong id="grandOpeningMinutes" class="countdown-value">00</strong><span class="countdown-label">Minutes</span></div>
+      <div class="countdown-unit"><strong id="grandOpeningSeconds" class="countdown-value">00</strong><span class="countdown-label">Seconds</span></div>
+    </div>
+    <p id="grandOpeningMessage" class="grand-opening-message">Our Sport Bar on the 2nd floor is being prepared for you and isn't open just yet. Please check back soon — in the meantime, we'd love to host you in the main restaurant.</p>
     <button class="btn-primary" onclick="closeBarSoon()">Got it</button>
   </div>
 </div>
