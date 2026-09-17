@@ -293,33 +293,52 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .hamburger{width:46px;height:46px;align-items:center;justify-content:center;border:3px solid #d84b2e;border-radius:50%;background:radial-gradient(circle at 50% 45%,#ffd86b 0 56%,#f3a33d 57% 76%,#d84b2e 77% 100%);box-shadow:0 3px 12px rgba(0,0,0,.35),inset 0 0 0 2px rgba(255,255,255,.28);}
 .hamburger span{width:22px;height:2px;background:#6e251d;border-radius:2px;transition:all .3s;box-shadow:0 0 2px rgba(255,255,255,.45);}
 .hamburger:active span{background:var(--gold-light);}
-.mobile-nav{
-  display:none;position:fixed;inset:0;z-index:1100;
-  background:rgba(10,7,5,0.98);
-  flex-direction:column;align-items:center;justify-content:center;gap:20px;
-  --cream:#f7ecd9;
+.mobile-nav-backdrop{
+  position:fixed;inset:0;z-index:1099;
+  background:rgba(6,4,3,0.6);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  opacity:0;visibility:hidden;
+  transition:opacity .4s ease,visibility .4s ease;
 }
-.mobile-nav.open{display:flex;}
+.mobile-nav-backdrop.open{opacity:1;visibility:visible;}
+.mobile-nav{
+  display:flex;position:fixed;top:0;left:0;bottom:0;z-index:1100;
+  width:82%;max-width:340px;
+  background:linear-gradient(180deg,rgba(13,9,6,0.99),rgba(23,19,16,0.99));
+  flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;
+  padding:100px 12px 40px 36px;
+  --cream:#f7ecd9;
+  transform:translateX(-100%);
+  transition:transform .45s cubic-bezier(.16,.84,.44,1);
+  box-shadow:12px 0 48px rgba(0,0,0,0.5);
+  overflow-y:auto;
+  will-change:transform;
+}
+.mobile-nav.open{transform:translateX(0);}
+@media(prefers-reduced-motion:reduce){
+  .mobile-nav{transition:none;}
+  .mobile-nav-backdrop{transition:none;}
+}
 .mobile-nav a{
-  position:relative;overflow:hidden;
-  font-family:var(--font-h);font-size:1.26rem;font-weight:700;color:var(--cream);
-  text-decoration:none;letter-spacing:2px;text-transform:uppercase;
-  transition:color .25s ease,transform .15s ease;
-  padding:8px 14px;border-radius:6px;-webkit-tap-highlight-color:transparent;
+  position:relative;overflow:hidden;width:100%;
+  font-family:var(--font-h);font-size:1.18rem;font-weight:700;color:var(--cream);
+  text-decoration:none;letter-spacing:1.6px;text-transform:uppercase;
+  transition:color .25s ease,transform .15s ease,background .2s ease;
+  padding:12px 14px;border-radius:6px;-webkit-tap-highlight-color:transparent;
 }
 .mobile-nav a:hover{color:var(--gold-light);}
 .mobile-nav a:active,
 .mobile-nav a.touched{
   color:var(--italian-green);
   background:rgba(255,255,255,0.06);
-  transform:scale(0.95);
+  transform:scale(0.97);
 }
 .mobile-close{position:absolute;top:18px;right:18px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);border-radius:50%;color:var(--cream);font-size:1.61rem;cursor:pointer;-webkit-tap-highlight-color:transparent;z-index:1101;}
 .mobile-close:active{color:var(--gold-light);transform:scale(0.9);}
 
 /* ===== HERO ===== */
 #hero{
-  position:relative;min-height:100vh;
+  position:relative;min-height:100vh;min-height:100dvh;
   display:flex;align-items:center;overflow:hidden;
   background:var(--black);
 }
@@ -328,13 +347,17 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   position:fixed;inset:0;z-index:0;
   overflow:hidden;
   pointer-events:none;
+  background:#0d0906 url('image/hero-bg.jpg') center/cover no-repeat;
 }
 .pisa-bg video{
   position:absolute;top:0;left:0;
   width:100%;height:100%;
   object-fit:cover;
   filter:brightness(1.12) saturate(1.2) contrast(1.03);
+  opacity:0;transition:opacity .8s ease;
 }
+.pisa-bg video.is-playing{opacity:1;}
+@media(prefers-reduced-motion:reduce){.pisa-bg video{transition:none;}}
 /* Two hero videos: a landscape one for desktop/tablet, a portrait one for phones.
    Only one is ever in the DOM's visible flow at a time — the other is display:none
    so it doesn't keep decoding/playing in the background. */
@@ -459,7 +482,7 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 /* ===== HERO ONLY: Italian-flag word colors + old trattoria-style buttons & stat plaque ===== */
 #hero .hero-title{color:#ffffff;text-shadow:0 2px 4px rgba(0,0,0,.65),0 0 28px rgba(0,0,0,.4);letter-spacing:.5px;}
 #hero .hero-title .green{background:linear-gradient(120deg,#1c9a4e 0%,#0f7a3a 40%,#1c9a4e 70%,#0a5c2b 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#1c9a4e;filter:drop-shadow(0 0 8px rgba(28,154,78,.35));}
-#hero .hero-title .red{background:none;-webkit-text-fill-color:#ffffff;color:#ffffff;text-shadow:0 0 18px rgba(255,255,255,.72),0 2px 4px rgba(0,0,0,.55);}
+#hero .hero-title .red{background:none;-webkit-text-fill-color:#ffffff;color:#ffffff;text-shadow:none;}
 #hero .hero-title .gold{background:none;-webkit-text-fill-color:#ffffff;color:#ffffff;}
 #hero .hero-title::after{content:'';display:block;width:96px;height:4px;margin:18px auto 0;background:linear-gradient(90deg,#0f7a3a 0 33.33%,#fffdf6 33.33% 66.66%,#c11f2b 66.66% 100%);border-radius:2px;box-shadow:0 1px 6px rgba(0,0,0,.4);}
 #hero .hero-title{font-size:0;margin-bottom:22px;}
@@ -824,10 +847,11 @@ video.menu-card-img{display:block;background:#000;}
   background:linear-gradient(180deg,#241209,var(--espresso));
   border:1px solid var(--glass-border);border-radius:22px;
   box-shadow:0 40px 100px rgba(255, 255, 255, 0.6);
-  transform:scale(.88) translateY(20px);
-  transition:transform .4s cubic-bezier(.2,.9,.3,1.2);
+  transform:translateX(-48px);opacity:0;
+  transition:transform .45s cubic-bezier(.16,.84,.44,1),opacity .35s ease;
 }
-.dish-modal.active .dish-modal-content{transform:scale(1) translateY(0);}
+.dish-modal.active .dish-modal-content{transform:translateX(0);opacity:1;}
+@media(prefers-reduced-motion:reduce){.dish-modal-content{transition:opacity .3s ease;}}
 .dish-modal-close{
   position:absolute;top:16px;right:16px;z-index:3;
   width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,0.25);
@@ -1171,10 +1195,11 @@ body .social-link[data-social="youtube"]:hover{background:#FF0000;border-color:#
   border-top:3px solid;border-image:linear-gradient(90deg,var(--gold),var(--gold-light),var(--terracotta-light)) 1;
   box-shadow:0 40px 100px rgba(0,0,0,0.6);
   padding:38px 30px 32px;
-  transform:scale(.85) translateY(30px);opacity:0;
-  transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .35s ease;
+  transform:translateX(-52px);opacity:0;
+  transition:transform .45s cubic-bezier(.16,.84,.44,1),opacity .35s ease;
 }
-#barSoonOverlay.open .bar-soon-modal{transform:scale(1) translateY(0);opacity:1;}
+#barSoonOverlay.open .bar-soon-modal{transform:translateX(0);opacity:1;}
+@media(prefers-reduced-motion:reduce){.bar-soon-modal{transition:opacity .3s ease;}}
 .bar-soon-close{
   position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;
   background:rgba(23,19,16,0.05);border:1px solid rgba(23,19,16,0.15);color:var(--cream);
@@ -1197,10 +1222,11 @@ body .social-link[data-social="youtube"]:hover{background:#FF0000;border-color:#
   border-top:3px solid;border-image:linear-gradient(90deg,var(--gold),var(--gold-light),var(--terracotta-light)) 1;
   box-shadow:0 40px 100px rgba(0,0,0,0.6);
   padding:28px;
-  transform:scale(.85) translateY(30px);opacity:0;
-  transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .35s ease;
+  transform:translateX(-52px);opacity:0;
+  transition:transform .45s cubic-bezier(.16,.84,.44,1),opacity .35s ease;
 }
-#tableModalOverlay.open .table-modal{transform:scale(1) translateY(0);opacity:1;}
+#tableModalOverlay.open .table-modal{transform:translateX(0);opacity:1;}
+@media(prefers-reduced-motion:reduce){.table-modal{transition:opacity .3s ease;}}
 .table-modal-close{
   position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;
   background:rgba(23,19,16,0.05);border:1px solid rgba(23,19,16,0.15);color:var(--cream);
@@ -1271,16 +1297,16 @@ body .social-link[data-social="youtube"]:hover{background:#FF0000;border-color:#
 }
 
 /* ===== FOOTER ===== */
-footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);padding:56px 5% 28px;}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:46px;max-width:1300px;margin:0 auto 46px;}
-.footer-brand p{font-size:0.95rem;color:rgba(43,36,29,0.86);line-height:1.8;margin-top:18px;max-width:290px;}
+footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);padding:34px 5% 20px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;max-width:1300px;margin:0 auto 28px;}
+.footer-brand p{font-size:0.95rem;color:rgba(43,36,29,0.86);line-height:1.6;margin-top:12px;max-width:290px;}
 .footer-logo{height:66px;width:auto;}
-.footer-col h4{font-family:var(--font-h);font-weight:700;font-size:0.86rem;color:var(--cream);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-col h4{font-family:var(--font-h);font-weight:700;font-size:0.86rem;color:var(--cream);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
 .footer-col ul a{font-size:0.95rem;color:rgba(43,36,29,0.86);text-decoration:none;transition:all .3s;}
 .footer-col ul a:hover{color:var(--gold);padding-left:4px;}
 .footer-social{display:flex;gap:10px;margin-top:18px;}
-.footer-bottom{max-width:1300px;margin:0 auto;padding-top:22px;border-top:1px solid rgba(23,19,16,0.1);display:flex;align-items:center;justify-content:space-between;}
+.footer-bottom{max-width:1300px;margin:0 auto;padding-top:16px;border-top:1px solid rgba(23,19,16,0.1);display:flex;align-items:center;justify-content:space-between;}
 .footer-bottom p{font-size:0.87rem;color:rgba(43,36,29,0.86);}
 .footer-bottom .made-by{display:block;font-size:.68rem;letter-spacing:.5px;color:rgba(43,36,29,.68);margin-top:4px;}
 .footer-bottom .gold{color:var(--gold);}
@@ -1291,7 +1317,7 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
 .page-enter{animation:pageEnter .55s cubic-bezier(.2,.8,.25,1) both;}
 @keyframes pageEnter{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 @media(prefers-reduced-motion:reduce){.page-enter{animation:none;}}
-.bar-hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--black);}
+.bar-hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;overflow:hidden;background:var(--black);}
 .bar-hero-bg{
   position:absolute;inset:0;
   background:var(--black);
@@ -1307,7 +1333,7 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
   background:linear-gradient(135deg,rgba(10,7,5,.9) 0%,rgba(10,7,5,.6) 100%);
 }
 .bar-hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:120px 5% 80px;text-align:center;}
-.tiramisu-showcase,.coffee-showcase{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#080706;}
+.tiramisu-showcase,.coffee-showcase{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#080706;}
 .tiramisu-showcase video,.coffee-showcase video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
 .tiramisu-showcase::after,.coffee-showcase::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,6,.18),rgba(8,7,6,.48) 58%,rgba(8,7,6,.78));}
 .tiramisu-showcase-content,.coffee-showcase-content{position:relative;z-index:1;text-align:center;padding:80px 5%;}
@@ -1685,7 +1711,7 @@ footer{background:var(--espresso);border-top:1px solid rgba(23,19,16,0.1);paddin
      wrapping unevenly across multiple centered rows */
   .menu-tabs{
     flex-wrap:nowrap;
-    justify-content:flex-start;
+    justify-content:center;
     overflow-x:auto;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
@@ -2042,6 +2068,7 @@ h1, h2, h3, h4, h5, h6,
 </nav>
 
 <!-- MOBILE NAV --> 
+<div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
 <div class="mobile-nav" id="mobileNav">
   <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
   <a href="#experience" onclick="return navGo('experience',event,this);">Experience</a>
@@ -2430,7 +2457,7 @@ Come for the pizza. Stay for the experience..</p>
 <!-- FOOTER -->
 <footer>
   <div class="italian-divider" style="margin-bottom:0;"></div>
-  <div class="footer-grid" style="padding-top:50px;">
+  <div class="footer-grid" style="padding-top:24px;">
     <div class="footer-brand">
       <img src="image/logo-transparent.png" alt="Mama Roma" class="footer-logo">
       <p>Mama Roma brings the authentic soul of Italy to Mount Lavinia, Colombo. Where every meal is a celebration of heritage, flavor, and warmth.</p>
@@ -2822,10 +2849,14 @@ function initHeroBackgroundVideo(){
       video.setAttribute('playsinline','');
       if(video.readyState===0) video.load();
       var playback=video.play();
-      if(playback&&playback.catch) playback.catch(function(){
-        video.load();
-        video.play().catch(function(){});
-      });
+      if(playback&&playback.then){
+        playback.then(function(){video.classList.add('is-playing');}).catch(function(){
+          video.load();
+          video.play().then(function(){video.classList.add('is-playing');}).catch(function(){});
+        });
+      }else{
+        video.classList.add('is-playing');
+      }
     });
   };
   heroVideos.forEach(function(video){
@@ -2841,37 +2872,48 @@ function initHeroBackgroundVideo(){
 }
 initHeroBackgroundVideo();
 
-// Preloader
+// Preloader — waits for the page to actually be ready (fonts swapped in,
+// hero video metadata available) before revealing it, so refreshing never
+// exposes a half-loaded, "collapsed" looking hero for a split second.
 function hidePreloader(){
   var preloader=document.getElementById('preloader');
   if(preloader && !preloader.classList.contains('hidden')){
     preloader.classList.add('hidden');
   }
 }
-function startPreloader(){
-  setTimeout(hidePreloader, 60);
-}
-if(document.readyState === 'loading'){
-  document.addEventListener('DOMContentLoaded', startPreloader, {once:true});
-}else{
-  startPreloader();
-}
-if(document.readyState === 'complete' || document.readyState === 'interactive'){
-  setTimeout(startPreloader, 0);
-}else{
-  window.addEventListener('load', startPreloader, {once:true});
-}
+(function(){
+  var minShown=new Promise(function(res){setTimeout(res,450);});
+  var fontsReady=(document.fonts && document.fonts.ready) ? document.fonts.ready.catch(function(){}) : Promise.resolve();
+  var pageLoaded=new Promise(function(res){
+    if(document.readyState==='complete') return res();
+    window.addEventListener('load',res,{once:true});
+  });
+  var safetyTimeout=new Promise(function(res){setTimeout(res,3500);});
+  Promise.race([
+    Promise.all([minShown,fontsReady,pageLoaded]),
+    safetyTimeout
+  ]).then(hidePreloader);
+})();
 
 // Navbar
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',function(){navbar.classList.toggle('scrolled',window.scrollY>70);});
 
 // Hamburger
-document.getElementById('hamburger').addEventListener('click',function(){document.getElementById('mobileNav').classList.add('open');document.body.style.overflow='hidden';});
+document.getElementById('hamburger').addEventListener('click',function(){
+  document.getElementById('mobileNav').classList.add('open');
+  document.getElementById('mobileNavBackdrop').classList.add('open');
+  document.body.style.overflow='hidden';
+});
 document.getElementById('mobileClose').addEventListener('click',closeMobileNav);
-function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow='';}
-// Tap on the dark backdrop (not on a link/button) also closes the menu
-document.getElementById('mobileNav').addEventListener('click',function(e){if(e.target===this)closeMobileNav();});
+function closeMobileNav(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('mobileNavBackdrop').classList.remove('open');
+  document.body.style.overflow='';
+}
+// Tap on the dark backdrop also closes the menu
+document.getElementById('mobileNavBackdrop').addEventListener('click',closeMobileNav);
+document.querySelectorAll('.mobile-nav a').forEach(function(a){a.addEventListener('click',function(){setTimeout(closeMobileNav,80);});});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobileNav();});
 
 // Smart nav link handler — always lands on the right section, switching
