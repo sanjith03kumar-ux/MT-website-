@@ -127,7 +127,9 @@
 <link rel="preload" as="image" href="image/hero-bg.jpg" fetchpriority="high">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Caveat:wght@500;600;700&family=Climate+Crisis&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Caveat:wght@500;600;700&family=Climate+Crisis&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Jost:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Caveat:wght@500;600;700&family=Climate+Crisis&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Jost:wght@300;400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -2210,11 +2212,11 @@ h1, h2, h3, h4, h5, h6,
 <!-- HERO — PISA TOWER BG -->
 <section id="hero">
   <div class="pisa-bg" id="pisaBg">
-    <video class="pisa-video-desktop" data-loop-video autoplay muted loop playsinline preload="metadata" fetchpriority="high" poster="image/hero-bg.jpg">
-      <source src="image/hero-bg.mp4" type="video/mp4">
+    <video class="pisa-video-desktop" data-loop-video autoplay muted loop playsinline preload="none" poster="image/hero-bg.jpg">
+      <source data-src="image/hero-bg.mp4" type="video/mp4">
     </video>
-    <video class="pisa-video-mobile" data-loop-video autoplay muted loop playsinline preload="metadata" fetchpriority="high" poster="image/hero-bg.jpg">
-      <source src="image/hero-mobile-bg.mp4" type="video/mp4">
+    <video class="pisa-video-mobile" data-loop-video autoplay muted loop playsinline preload="none" poster="image/hero-bg.jpg">
+      <source data-src="image/hero-mobile-bg.mp4" type="video/mp4">
     </video>
   </div>
   <div class="pisa-color-wash"></div>
@@ -2569,11 +2571,11 @@ Benvenuti a Mama Roma! Come for the pizza. Stay for the experience.</p>
         <div class="form-group full"><label class="form-label" for="inquiryMessage">Your Inquiry</label><textarea class="form-textarea" id="inquiryMessage" placeholder="Tell us what you would like to know..."></textarea></div>
         <div class="form-group full" style="text-align:center;">
           <button type="button" class="btn-whatsapp btn-wa-glass" onclick="sendMainInquiryWhatsApp()">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp"> Send Inquiry via WhatsApp
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> Send Inquiry via WhatsApp
           </button>
           <div style="margin-top:14px;">
             <button type="button" class="btn-whatsapp btn-wa-glass" onclick="openEventModal()">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp"> Event Inquiry
+              <i class="fab fa-whatsapp" aria-hidden="true"></i> Event Inquiry
             </button>
           </div>
           <p style="margin-top:12px;font-size:.75rem;color:rgb(255, 255, 255);letter-spacing:1px;">Your message will open in WhatsApp</p>
@@ -2587,7 +2589,7 @@ Benvenuti a Mama Roma! Come for the pizza. Stay for the experience.</p>
   <div class="italian-divider" style="margin-bottom:0;"></div>
   <div class="footer-grid" style="padding-top:24px;">
     <div class="footer-brand">
-      <img src="image/logo-transparent.png" alt="Mama Roma" class="footer-logo">
+      <img src="image/logo-transparent.png" alt="Mama Roma" class="footer-logo" loading="lazy" decoding="async">
       <p>Mama Roma brings the authentic soul of Italy to Mount Lavinia, Colombo. Where every meal is a celebration of heritage, flavor, and warmth.</p>
       <div class="footer-social">
         <a href="#" class="social-link" data-social="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
@@ -2739,7 +2741,7 @@ Benvenuti a Mama Roma! Come for the pizza. Stay for the experience.</p>
         <div class="form-group"><label class="form-label">Experience</label><select class="form-select"><option>2nd Floor Sport Bar</option><option>Bar Lounge</option><option>Private Event</option></select></div>
         <div class="form-group full" style="text-align:center;">
           <button type="button" class="btn-whatsapp" onclick="sendBarReservationWhatsApp()" style="font-size:.88rem;padding:14px 44px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp"> Reserve via WhatsApp
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> Reserve via WhatsApp
           </button>
           <p style="margin-top:12px;font-size:.75rem;color:#fff;letter-spacing:1px;">Opens WhatsApp with your details pre-filled</p>
         </div>
@@ -2752,7 +2754,7 @@ Benvenuti a Mama Roma! Come for the pizza. Stay for the experience.</p>
   <div class="italian-divider" style="margin-bottom:0;"></div>
   <div class="footer-grid" style="padding-top:50px;">
     <div class="footer-brand">
-      <img src="image/logo-transparent.png" alt="Mama Roma" class="footer-logo">
+      <img src="image/logo-transparent.png" alt="Mama Roma" class="footer-logo" loading="lazy" decoding="async">
       <p>Mama Roma Bar & Restaurant — Premium cocktails meet Italian dining excellence above Mount Lavinia.</p>
     </div>
     <div class="footer-col"><h4>Bar Menu</h4><ul><li><a href="#">Beer Selection</a></li><li><a href="#">Wine Cellar</a></li><li><a href="#">Signature Cocktails</a></li><li><a href="#">Premium Spirits</a></li></ul></div>
@@ -2945,21 +2947,31 @@ function initLoopVideos(){
       }
     }
   };
+  const visibleVideos=new Set();
   const observer=new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
-      if(entry.isIntersecting) playVideo(entry.target);
-      else if(!entry.target.paused) entry.target.pause();
+      if(entry.isIntersecting){
+        visibleVideos.add(entry.target);
+        playVideo(entry.target);
+      }else{
+        visibleVideos.delete(entry.target);
+        entry.target.pause();
+        entry.target.classList.remove('is-playing');
+      }
     });
   },{rootMargin:'160px 0px',threshold:0.01});
   videos.forEach(function(video){
     video.addEventListener('loadeddata',function(){
-      if(document.visibilityState==='visible') playVideo(video);
+      if(document.visibilityState==='visible' && visibleVideos.has(video)) playVideo(video);
     },{once:true});
     observer.observe(video);
   });
   document.addEventListener('visibilitychange',function(){
-    if(document.visibilityState==='visible') videos.forEach(playVideo);
-    else videos.forEach(function(video){video.pause();});
+    if(document.visibilityState==='visible') visibleVideos.forEach(playVideo);
+    else videos.forEach(function(video){
+      video.pause();
+      video.classList.remove('is-playing');
+    });
   });
 }
 initLoopVideos();
@@ -2970,17 +2982,23 @@ function initHeroBackgroundVideo(){
   if(!heroVideos.length) return;
   var startVisibleHeroVideo=function(){
     heroVideos.forEach(function(video){
-      if(video.offsetParent===null) return;
+      if(video.offsetParent===null || !video.paused) return;
       video.muted=true;
       video.defaultMuted=true;
       video.loop=true;
       video.setAttribute('playsinline','');
-      if(video.readyState===0) video.load();
+      var pendingSources=video.querySelectorAll('source[data-src]');
+      if(pendingSources.length){
+        pendingSources.forEach(function(source){
+          source.src=source.dataset.src;
+          source.removeAttribute('data-src');
+        });
+        video.load();
+      }
       var playback=video.play();
       if(playback&&playback.then){
-        playback.then(function(){video.classList.add('is-playing');}).catch(function(){
-          video.load();
-          video.play().then(function(){video.classList.add('is-playing');}).catch(function(){});
+        playback.then(function(){video.classList.add('is-playing');}).catch(function(error){
+          if(error && error.name!=='NotAllowedError') console.warn('Hero background video could not start.',error);
         });
       }else{
         video.classList.add('is-playing');
@@ -3025,7 +3043,18 @@ function hidePreloader(){
 
 // Navbar
 const navbar=document.getElementById('navbar');
-window.addEventListener('scroll',function(){navbar.classList.toggle('scrolled',window.scrollY>70);});
+var scrollFramePending=false;
+window.addEventListener('scroll',function(){
+  if(scrollFramePending) return;
+  scrollFramePending=true;
+  window.requestAnimationFrame(function(){
+    scrollFramePending=false;
+    var scrollY=window.scrollY;
+    navbar.classList.toggle('scrolled',scrollY>70);
+    var bg=document.getElementById('pisaBg');
+    if(bg) bg.style.transform='translateY('+(scrollY*0.15)+'px)';
+  });
+},{passive:true});
 
 // Hamburger
 document.getElementById('hamburger').addEventListener('click',function(){
@@ -3382,11 +3411,6 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 
-// Parallax
-window.addEventListener('scroll',function(){
-  const bg=document.getElementById('pisaBg');
-  if(bg){bg.style.transform='translateY('+(window.scrollY*0.15)+'px)';}
-});
 </script>
 
 <!-- ===== PIZZA BASIL LEAF CANVAS ===== -->
@@ -3436,6 +3460,8 @@ window.addEventListener('scroll',function(){
   var canvas = document.getElementById('pizzaBasilCanvas');
   var ctx = canvas.getContext('2d');
   var W, H;
+  var stage = document.querySelector('.pizza-3d-stage');
+  if(!stage || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   function resize() {
     W = canvas.width = window.innerWidth;
@@ -3444,26 +3470,28 @@ window.addEventListener('scroll',function(){
   window.addEventListener('resize', resize);
   resize();
 
-  // Pre-load leaf images
   var LEAF_COUNT = 18;
   var leafImgs = [];
   var sizes = [34, 42, 28, 50, 38, 44, 30, 48, 36, 40, 32, 46, 35, 43, 29, 52, 37, 41];
   var hues  = [5, -8, 12, -5, 8, -12, 3, 15, -3, 10, -10, 6, -6, 14, -14, 2, 9, -9];
+  var leafImagesReady = false;
 
-  for (var i = 0; i < LEAF_COUNT; i++) {
-    (function(idx) {
-      var img = new Image();
-      var w = sizes[idx]; var h = Math.round(w * 1.35);
-      img.src = makeLeafSVG(w * 2, h * 2, hues[idx]);
-      leafImgs[idx] = { img: img, w: w, h: h };
-    })(i);
+  function preloadLeafImages() {
+    if(leafImagesReady) return;
+    leafImagesReady = true;
+    for (var i = 0; i < LEAF_COUNT; i++) {
+      (function(idx) {
+        var img = new Image();
+        var w = sizes[idx]; var h = Math.round(w * 1.35);
+        img.src = makeLeafSVG(w * 2, h * 2, hues[idx]);
+        leafImgs[idx] = { img: img, w: w, h: h };
+      })(i);
+    }
   }
 
   // Get pizza center from the .pizza-3d-stage element
   function getPizzaRect() {
-    var el = document.querySelector('.pizza-3d-stage');
-    if (!el) return null;
-    var r = el.getBoundingClientRect();
+    var r = stage.getBoundingClientRect();
     return { cx: r.left + r.width/2, cy: r.top + r.height/2, r: r.width/2 * 0.78 };
   }
 
@@ -3491,8 +3519,14 @@ window.addEventListener('scroll',function(){
   }
 
   var frame = 0;
+  var animationActive = false;
+  var animationFrame = 0;
+  var stageIsVisible = false;
+  var didKickstart = false;
+  var kickstartTimers = [];
   function animate() {
-    requestAnimationFrame(animate);
+    if(!animationActive) return;
+    animationFrame = requestAnimationFrame(animate);
     ctx.clearRect(0, 0, W, H);
     frame++;
 
@@ -3543,11 +3577,48 @@ window.addEventListener('scroll',function(){
     }
   }
 
-  animate();
-  // Kickstart with a few leaves
-  setTimeout(function(){ spawnLeaf(); }, 800);
-  setTimeout(function(){ spawnLeaf(); }, 1600);
-  setTimeout(function(){ spawnLeaf(); }, 2400);
+  function startAnimation() {
+    if(animationActive || document.hidden || !stageIsVisible) return;
+    preloadLeafImages();
+    animationActive = true;
+    animationFrame = requestAnimationFrame(animate);
+    if(!didKickstart) {
+      didKickstart = true;
+      kickstartTimers = [
+        setTimeout(spawnLeaf, 800),
+        setTimeout(spawnLeaf, 1600),
+        setTimeout(spawnLeaf, 2400)
+      ];
+    }
+  }
+
+  function stopAnimation() {
+    if(!animationActive) return;
+    animationActive = false;
+    cancelAnimationFrame(animationFrame);
+    kickstartTimers.forEach(clearTimeout);
+    kickstartTimers = [];
+    leaves.length = 0;
+    ctx.clearRect(0, 0, W, H);
+  }
+
+  function updateAnimationState() {
+    if(stageIsVisible && !document.hidden) startAnimation();
+    else stopAnimation();
+  }
+
+  if('IntersectionObserver' in window) {
+    var stageObserver = new IntersectionObserver(function(entries) {
+      stageIsVisible = entries.some(function(entry){ return entry.isIntersecting; });
+      updateAnimationState();
+    });
+    stageObserver.observe(stage);
+  } else {
+    stageIsVisible = true;
+    updateAnimationState();
+  }
+
+  document.addEventListener('visibilitychange', updateAnimationState);
 })();
 </script>
 
@@ -3985,7 +4056,7 @@ document.addEventListener('DOMContentLoaded', function(){
     </div>
     <div class="em-actions">
       <button type="button" class="btn-whatsapp" onclick="sendEventInquiryWhatsApp()" style="font-size:.9rem;padding:15px 46px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp"> Send via WhatsApp
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Send via WhatsApp
       </button>
     </div>
   </div>
@@ -4108,15 +4179,12 @@ document.addEventListener('keydown',function(e){
 .pisa-video-desktop,.pisa-video-mobile,.bar-hero-video,.rooftop-bg,.exp-main-img,
 .tiramisu-showcase video,.coffee-showcase video{
   animation:cineKenBurns 28s ease-in-out infinite;
-  will-change:transform;
 }
 
-/* Fine film grain, drifting, over the cinematic sections only */
+/* Fine film grain over the cinematic sections only */
 .cine-grain{position:absolute;inset:-20%;z-index:4;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC45JyBudW1PY3RhdmVzPScyJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsdGVyPSd1cmwoI24pJyBvcGFjaXR5PScwLjUnLz48L3N2Zz4=");
-  animation:cineGrain 1s steps(4) infinite;
 }
-@keyframes cineGrain{0%{transform:translate(0,0);}25%{transform:translate(-2%,1%);}50%{transform:translate(1%,-2%);}75%{transform:translate(-1%,2%);}100%{transform:translate(0,0);}}
 
 @media(prefers-reduced-motion:reduce){
   .pisa-video-desktop,.pisa-video-mobile,.bar-hero-video,.rooftop-bg,.exp-main-img,
