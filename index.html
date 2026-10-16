@@ -4070,12 +4070,38 @@ document.addEventListener('DOMContentLoaded', function(){
 <!-- BAR & RESTAURANT — "Opening Soon" popup (bar section temporarily closed) -->
 <div id="barSoonOverlay" onclick="if(event.target===this)closeBarSoon();">
   <div class="bar-soon-modal">
-    <button class="bar-soon-close" onclick="closeBarSoon()" aria-label="Close"><i class="fas fa-times"></i></button>
-    <div class="bar-soon-photo"><img decoding="async" src="image/bar-picture.jpeg" alt="Mama Roma Sport Bar" loading="lazy"><span class="bar-soon-tag">BYOB Welcome</span></div>
-    <h3 id="grandOpeningTitle">WE ARE OPEN<br>BYOB WELCOME</h3>
-    <p id="grandOpeningSubtitle" class="grand-opening-subtitle">Sport Bar &amp; Lounge – 2nd Floor, Mama Roma</p>
-    <p id="grandOpeningMessage" class="grand-opening-message">Our Sport Bar is open and you're welcome to bring your own bottle (BYOB). Enjoy the game, great Italian food and a lively atmosphere with friends.</p>
-    <button class="btn-primary" onclick="closeBarSoon()">Got it</button>
+    <button class="bar-soon-close" onclick="closeBarSoon()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+<div class="bar-soon-scroll">
+    <div class="bar-soon-poster">
+      <img decoding="async" src="image/byob-poster.jpg" alt="Mama Roma Sports Bar — BYOB Open Now" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="bsp-fallback" style="display:none;background-image:linear-gradient(180deg,rgba(6,22,14,.55) 0%,rgba(6,22,14,.88) 100%),url('image/bar-picture.jpeg');">
+        <div class="bsp-flagline"></div>
+        <div class="bsp-brand">MAMA ROMA</div>
+        <div class="bsp-sub">Authentic Italian Restaurant<br>Café &amp; Sports Bar</div>
+        <div class="bsp-loc">Mount Lavinia</div>
+        <div class="bsp-byob">BYOB</div>
+        <div class="bsp-open">OPEN NOW</div>
+        <div class="bsp-line">Enjoy Great Food, Good Company</div>
+        <div class="bsp-line bsp-script">and Your Favourite Drink!</div>
+        <div class="bsp-flagline"></div>
+      </div>
+    </div>
+    <div class="bar-soon-details">
+      <h3 id="grandOpeningTitle">WE ARE OPEN — BYOB WELCOME</h3>
+      <p id="grandOpeningSubtitle" class="grand-opening-subtitle">Sport Bar – 2nd Floor, Mama Roma</p>
+      <p id="grandOpeningMessage" class="grand-opening-message">Our Sport Bar is open and you're welcome to bring your own bottle (BYOB). Enjoy great food, good company and your favourite drink.</p>
+      <ul class="bar-soon-info">
+        <li><i class="fa-solid fa-wine-bottle"></i> Bring your own bottle – welcome</li>
+        <li><i class="fa-regular fa-clock"></i> Daily 12:00 PM – 12:00 AM</li>
+        <li><i class="fa-solid fa-location-dot"></i> No. 04 Hotel Road, Mount Lavinia</li>
+        <li><i class="fa-solid fa-phone"></i> <a href="tel:+94112720020">+94 11 272 0020</a></li>
+      </ul>
+      <div class="bar-soon-actions">
+        <a class="btn-primary bsa-wa" href="https://wa.me/94761185530?text=Hi%20Mama%20Roma%2C%20I%27d%20like%20to%20ask%20about%20the%20Sport%20Bar." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+        <a class="btn-primary bsa-call" href="tel:+94112720020"><i class="fa-solid fa-phone"></i> Call Now</a>
+      </div>
+    </div>
+</div>
   </div>
 </div>
 
@@ -4238,6 +4264,74 @@ img{height:auto;}
 .bar-soon-tag{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:2;background:linear-gradient(135deg,#12c96a,#0f7a3a);color:#fff;font-family:var(--font-h);font-weight:800;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;padding:6px 16px;border-radius:50px;box-shadow:0 4px 12px rgba(0,0,0,.25);white-space:nowrap;}
 .bar-soon-modal .bar-soon-close{background:rgba(255,255,255,.9);}
 @media(max-width:480px){.bar-soon-photo{margin:0 -30px 18px;height:150px;}.bar-soon-modal h3{font-size:1.4rem;}}
+
+/* Sport Bar popup: full poster image + details */
+#barSoonOverlay{overflow-y:auto;}
+.bar-soon-modal{max-width:520px !important;max-height:92vh;overflow-y:auto !important;padding:0 !important;margin:auto;}
+.bar-soon-poster{width:100%;background:#0b1a12;}
+.bar-soon-poster img{width:100%;height:auto;display:block;max-height:none;}
+.bsp-fallback{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:38px 22px;min-height:460px;background-size:cover;background-position:center;font-family:var(--font-h);color:#fff;}
+.bsp-flagline{width:130px;height:4px;border-radius:2px;background:linear-gradient(90deg,#0f7a3a 0 33.3%,#fffdf6 33.3% 66.6%,#c11f2b 66.6% 100%);}
+.bsp-brand{font-weight:800;font-size:clamp(2.2rem,9vw,3.2rem);letter-spacing:2px;color:#f2c96b;line-height:1;}
+.bsp-sub{font-weight:700;font-size:.95rem;letter-spacing:3px;text-transform:uppercase;line-height:1.5;}
+.bsp-loc{font-size:.85rem;letter-spacing:5px;text-transform:uppercase;color:#f2c96b;}
+.bsp-byob{margin-top:14px;font-weight:900;font-style:italic;font-size:clamp(3.6rem,16vw,5.6rem);line-height:1;color:#0b3b22;background:#f2c96b;padding:4px 26px;transform:rotate(-3deg);box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.bsp-open{font-weight:800;font-size:1.6rem;letter-spacing:2px;background:#0b3b22;color:#fff;border:2px solid #f2c96b;padding:6px 28px;}
+.bsp-line{font-size:1.05rem;font-weight:600;margin-top:6px;}
+.bsp-script{font-family:var(--font-d);font-size:1.6rem;color:#f2c96b;font-style:italic;margin-top:0;}
+/* ---- Popup layout: fixed close button, inner area scrolls, perfectly centered ---- */
+#barSoonOverlay{align-items:center;justify-content:center;padding:16px;overflow:hidden;}
+#barSoonOverlay .bar-soon-modal{
+  width:100%;max-width:480px !important;margin:0 auto;
+  max-height:calc(100dvh - 32px);max-height:calc(100vh - 32px);
+  display:flex;flex-direction:column;overflow:hidden !important;padding:0 !important;
+  border-radius:20px !important;background:#fff;
+}
+@supports (height:100dvh){#barSoonOverlay .bar-soon-modal{max-height:calc(100dvh - 32px);}}
+#barSoonOverlay .bar-soon-close{position:absolute !important;top:10px;right:10px;float:none !important;margin:0 !important;width:38px;height:38px;background:rgba(0,0,0,.6) !important;color:#fff !important;border:1px solid rgba(255,255,255,.5);z-index:10;}
+.bar-soon-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;}
+.bar-soon-poster img{width:100%;height:auto;display:block;}
+.bar-soon-details{text-align:center;}
+.bar-soon-info{align-items:flex-start;width:fit-content;max-width:100%;margin:0 auto 20px;}
+.bar-soon-info li{align-items:flex-start;line-height:1.4;}
+.bar-soon-details .btn-primary{width:100%;max-width:340px;min-width:0;justify-content:center;white-space:normal;}
+@media(max-width:480px){
+  #barSoonOverlay{padding:10px;}
+  #barSoonOverlay .bar-soon-modal{max-height:calc(100dvh - 20px);border-radius:16px !important;}
+  .bsp-fallback{min-height:400px;padding:44px 16px 28px;}
+  .bar-soon-details h3{font-size:1.15rem;line-height:1.3;}
+  .bar-soon-details .grand-opening-subtitle{font-size:.9rem;}
+  .bar-soon-details .grand-opening-message{font-size:.95rem;}
+  .bar-soon-info li{font-size:.9rem;}
+}
+.bar-soon-details{padding:22px 26px 28px;}
+
+/* ---- Popup background: Mama Roma building photo (falls back to bar photo) ---- */
+#barSoonOverlay .bar-soon-modal{
+  background:
+    linear-gradient(180deg,rgba(6,10,8,.45) 0%,rgba(6,10,8,.80) 45%,rgba(6,10,8,.92) 100%),
+    url('image/mama-roma-building.jpg') center/cover no-repeat,
+    url('image/bar-picture.jpeg') center/cover no-repeat,
+    #0d0906 !important;
+}
+#barSoonOverlay .bar-soon-details h3{color:#f2c96b !important;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+#barSoonOverlay .bar-soon-details .grand-opening-subtitle{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6);}
+#barSoonOverlay .bar-soon-details .grand-opening-message{color:rgba(255,255,255,.92);text-shadow:0 1px 6px rgba(0,0,0,.6);}
+#barSoonOverlay .bar-soon-info li{color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6);}
+#barSoonOverlay .bar-soon-info i{color:#f2c96b;width:20px;text-align:center;margin-top:2px;}
+#barSoonOverlay .bar-soon-info a{color:#fff;text-decoration:none;}
+.bar-soon-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.bar-soon-actions .btn-primary{flex:1 1 150px;max-width:none;min-width:0;padding:13px 14px;font-size:.85rem;letter-spacing:1px;}
+.bar-soon-actions .bsa-wa{background:linear-gradient(135deg,#25d366,#128c4a);}
+.bar-soon-actions .bsa-call{background:linear-gradient(135deg,#c9972e,#a9761e);}
+.bar-soon-actions .btn-primary i{font-size:1.1rem;}
+.bar-soon-details h3{font-size:1.35rem;margin-bottom:6px;}
+.bar-soon-details .grand-opening-subtitle{font-weight:700;margin-bottom:10px;}
+.bar-soon-info{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:8px;text-align:left;}
+.bar-soon-info li{font-size:.95rem;color:rgba(43,36,29,.9);display:flex;gap:10px;align-items:center;}
+.bar-soon-info i{color:var(--gold);width:18px;text-align:center;}
+.bar-soon-modal .bar-soon-close{position:sticky;top:10px;float:right;margin:10px 10px -44px 0;background:rgba(0,0,0,.55);color:#fff;z-index:5;}
+@media(max-width:480px){.bar-soon-details{padding:18px 18px 24px;}}
 
 /* Event inquiry popup: remove the gold box outline */
 .event-modal{
