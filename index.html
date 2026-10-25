@@ -3245,9 +3245,47 @@ function restartCineKenBurns(scopeEl){
 
 function openBarSoon(){
   const overlay=document.getElementById('barSoonOverlay');
+  updateBarPoyaNotice();
   overlay.style.display='flex';
   requestAnimationFrame(function(){overlay.classList.add('open');});
   document.body.style.overflow='hidden';
+}
+function updateBarPoyaNotice(){
+  // Refresh these dates when the official Sri Lankan calendar is published each year.
+  var poyaDays={
+    '2026-01-03':'Duruthu Full Moon Poya Day',
+    '2026-02-01':'Navam Full Moon Poya Day',
+    '2026-03-02':'Madin Full Moon Poya Day',
+    '2026-04-01':'Bak Full Moon Poya Day',
+    '2026-05-01':'Vesak Full Moon Poya Day',
+    '2026-05-30':'Adhi Poson Full Moon Poya Day',
+    '2026-06-29':'Poson Full Moon Poya Day',
+    '2026-07-29':'Esala Full Moon Poya Day',
+    '2026-08-27':'Nikini Full Moon Poya Day',
+    '2026-09-26':'Binara Full Moon Poya Day',
+    '2026-10-25':'Vap Full Moon Poya Day',
+    '2026-11-24':'Ill Full Moon Poya Day',
+    '2026-12-23':'Unduvap Full Moon Poya Day'
+  };
+  var parts=new Intl.DateTimeFormat('en-CA',{
+    timeZone:'Asia/Colombo',
+    year:'numeric',
+    month:'2-digit',
+    day:'2-digit'
+  }).formatToParts(new Date());
+  var today=parts.find(function(part){return part.type==='year';}).value+'-'+
+    parts.find(function(part){return part.type==='month';}).value+'-'+
+    parts.find(function(part){return part.type==='day';}).value;
+  var poyaName=poyaDays[today];
+  var isPoya=Boolean(poyaName);
+  document.getElementById('barSoonPoster').style.display=isPoya?'none':'';
+  document.getElementById('grandOpeningTitle').textContent=isPoya?'POYA DAY — ALCOHOL UNAVAILABLE':'WE ARE OPEN — BYOB WELCOME';
+  document.getElementById('grandOpeningSubtitle').textContent=isPoya?poyaName+' · '+today:'Sport Bar – 2nd Floor, Mama Roma';
+  document.getElementById('grandOpeningMessage').textContent=isPoya
+    ?"In observance of Sri Lanka's Poya Day, alcohol is unavailable today. Our Sport Bar remains open for food and non-alcoholic drinks."
+    :"Our Sport Bar is open and you're welcome to bring your own bottle (BYOB). Enjoy great food, good company and your favourite drink.";
+  document.getElementById('barSoonByobInfo').style.display=isPoya?'none':'';
+  document.getElementById('barPoyaInfo').style.display=isPoya?'':'none';
 }
 function closeBarSoon(){
   const overlay=document.getElementById('barSoonOverlay');
@@ -4392,7 +4430,7 @@ function closeMenuModal(){
   <div class="bar-soon-modal">
     <button class="bar-soon-close" onclick="closeBarSoon()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
 <div class="bar-soon-scroll">
-    <div class="bar-soon-poster">
+    <div class="bar-soon-poster" id="barSoonPoster">
       <img decoding="async" src="image/byob-poster.jpg" alt="Mama Roma Sports Bar — BYOB Open Now" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="bsp-fallback" style="display:none;background-image:linear-gradient(180deg,rgba(6,22,14,.55) 0%,rgba(6,22,14,.88) 100%),url('image/bar-picture.jpeg');">
         <div class="bsp-flagline"></div>
@@ -4411,7 +4449,8 @@ function closeMenuModal(){
       <p id="grandOpeningSubtitle" class="grand-opening-subtitle">Sport Bar – 2nd Floor, Mama Roma</p>
       <p id="grandOpeningMessage" class="grand-opening-message">Our Sport Bar is open and you're welcome to bring your own bottle (BYOB). Enjoy great food, good company and your favourite drink.</p>
       <ul class="bar-soon-info">
-        <li><i class="fa-solid fa-wine-bottle"></i> Bring your own bottle – welcome</li>
+        <li id="barSoonByobInfo"><i class="fa-solid fa-wine-bottle"></i> Bring your own bottle – welcome</li>
+        <li id="barPoyaInfo" style="display:none;"><i class="fa-solid fa-ban"></i> Alcohol is unavailable today for Poya</li>
         <li><i class="fa-regular fa-clock"></i> Daily 12:00 PM – 12:00 AM</li>
         <li><i class="fa-solid fa-location-dot"></i> No. 04 Hotel Road, Mount Lavinia</li>
         <li><i class="fa-solid fa-phone"></i> <a href="tel:+94112720020">+94 11 272 0020</a></li>
