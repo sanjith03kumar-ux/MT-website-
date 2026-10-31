@@ -3291,7 +3291,8 @@ function closeBarSoon(){
 // Test any poster on any day:  open the site with  ?event=preview
 var EVENT_POSTERS = [
   { date:'2026-10-30', image:'image/promo.jpeg', title:'25% OFF Promo at MAMA ROMA', when:'30th & 31st October', note:'25% off your total bill · 30th & 31st October' },
-  { date:'2026-10-31', image:'image/promo.jpeg', title:'25% OFF Promo at MAMA ROMA', when:'30th & 31st October', note:'25% off your total bill · 30th & 31st October' }
+  { date:'2026-10-31', image:'image/promo.jpeg', title:'25% OFF Promo at MAMA ROMA', when:'30th & 31st October', note:'25% off your total bill · 30th & 31st October' },
+  { date:'2026-10-31', image:'image/Mama Roma Cricket Grand Finale (1).png', title:'Pakistan vs Sri Lanka Grand Finale', when:'Today at Mama Roma Sports Bar' }
   // { date:'2026-11-05', image:'image/events/2026-11-05-match.jpg', title:'Match Night', when:'Thursday 5 November · 7:00 PM', note:'FREE BYOB — enjoy the match with Italian taste' },
 ];
 
@@ -3304,24 +3305,57 @@ function colomboToday(){
 }
 function showPoster(ev){
   var ov=document.getElementById('todayEventOverlay');
-  if(!ov||!ev) return;
-  var img=document.getElementById('tevImg');
-  img.src=ev.image; img.alt=ev.title||'Event poster';
-  document.getElementById('tevNote').textContent=ev.note||'Free BYOB — enjoy the match with Italian taste';
-  ov.setAttribute('aria-label',ev.title||'Event poster');
+  if(!ov||!ev||!ev.length) return;
+  var posters=document.getElementById('tevPosters');
+  posters.replaceChildren();
+  ev.forEach(function(poster){
+    var button=document.createElement('button');
+    button.type='button';
+    button.className='tev-poster-button';
+    button.setAttribute('aria-label','View '+(poster.title||'event poster')+' full size');
+    button.addEventListener('click',function(){showExpandedPoster(poster.image,poster.title);});
+    var img=document.createElement('img');
+    img.src=poster.image;
+    img.alt=poster.title||'Event poster';
+    img.decoding='async';
+    button.appendChild(img);
+    posters.appendChild(button);
+  });
+  var notedPoster=ev.find(function(poster){return poster.note;});
+  document.getElementById('tevNote').textContent=notedPoster?notedPoster.note:'Free BYOB — enjoy the match with Italian taste';
+  ov.setAttribute('aria-label',ev.map(function(poster){return poster.title;}).filter(Boolean).join(' and ')||'Event posters');
   ov.classList.add('open');
   document.body.style.overflow='hidden';
   requestAnimationFrame(function(){requestAnimationFrame(function(){ov.classList.add('show');});});
 }
+function showExpandedPoster(src,title){
+  var lightbox=document.getElementById('eventPosterLightbox');
+  var img=document.getElementById('eventPosterLightboxImg');
+  if(!lightbox||!img) return;
+  img.src=src;
+  img.alt=title||'Event poster';
+  lightbox.setAttribute('aria-label',title||'Event poster');
+  lightbox.classList.add('open');
+}
+function closeExpandedPoster(){
+  var lightbox=document.getElementById('eventPosterLightbox');
+  if(lightbox) lightbox.classList.remove('open');
+}
 function closeTodayEvent(){
   var ov=document.getElementById('todayEventOverlay');
   if(!ov) return;
+  closeExpandedPoster();
   ov.classList.remove('show');
   document.body.style.overflow='';
   setTimeout(function(){ov.classList.remove('open');},350);
 }
 document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){var ov=document.getElementById('todayEventOverlay');if(ov&&ov.classList.contains('open'))closeTodayEvent();}
+  if(e.key==='Escape'){
+    var lightbox=document.getElementById('eventPosterLightbox');
+    if(lightbox&&lightbox.classList.contains('open')){closeExpandedPoster();return;}
+    var ov=document.getElementById('todayEventOverlay');
+    if(ov&&ov.classList.contains('open'))closeTodayEvent();
+  }
 });
 (function(){
   var today=colomboToday();
@@ -3330,9 +3364,12 @@ document.addEventListener('keydown',function(e){
                             .sort(function(a,b){return a.date<b.date?-1:1;});
 
   // Auto popup after the preloader (only for a poster whose date is today)
-  var todays=EVENT_POSTERS.filter(function(e){return e.date===today;})[0];
-  if(preview) todays=todays||upcoming[0]||EVENT_POSTERS[EVENT_POSTERS.length-1];
-  if(!todays) return;
+  var todays=EVENT_POSTERS.filter(function(e){return e.date===today;});
+  if(preview&&!todays.length){
+    var previewDate=upcoming.length?upcoming[0].date:EVENT_POSTERS[EVENT_POSTERS.length-1].date;
+    todays=EVENT_POSTERS.filter(function(e){return e.date===previewDate;});
+  }
+  if(!todays.length) return;
   var pre=document.getElementById('preloader'), fired=false;
   function go(){ if(fired) return; fired=true; setTimeout(function(){showPoster(todays);},450); }  // let the preloader fade out first
   if(!pre||pre.classList.contains('hidden')){ go(); return; }
@@ -4476,9 +4513,13 @@ function closeMenuModal(){
 <div id="todayEventOverlay" role="dialog" aria-modal="true" aria-label="Event poster" onclick="if(event.target===this)closeTodayEvent();">
   <div class="tev-modal">
     <button type="button" class="tev-close" onclick="closeTodayEvent()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-    <img id="tevImg" decoding="async" src="" alt="">
+    <div id="tevPosters" class="tev-posters"></div>
     <div class="tev-note"><i class="fa-solid fa-wine-bottle"></i> <span id="tevNote">Free BYOB &mdash; enjoy the match with Italian taste</span></div>
   </div>
+</div>
+<div id="eventPosterLightbox" class="event-poster-lightbox" role="dialog" aria-modal="true" aria-label="Event poster" onclick="if(event.target===this)closeExpandedPoster();">
+  <button type="button" class="tev-close event-poster-lightbox-close" onclick="closeExpandedPoster()" aria-label="Close enlarged poster"><i class="fa-solid fa-xmark"></i></button>
+  <img id="eventPosterLightboxImg" src="" alt="">
 </div>
 
 <!-- BAR & RESTAURANT — "Opening Soon" popup (bar section temporarily closed) -->
@@ -4965,13 +5006,20 @@ video{object-fit:cover;}
 #todayEventOverlay{position:fixed;inset:0;z-index:6000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(8,5,3,.88);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .35s ease;}
 #todayEventOverlay.open{display:flex;}
 #todayEventOverlay.show{opacity:1;}
-/* poster is 2:3 portrait: width is limited by screen height so the whole poster + note always fits */
-.tev-modal{position:relative;width:min(92vw,480px,calc((100vh - 120px) * .6667));width:min(92vw,480px,calc((100dvh - 120px) * .6667));border-radius:18px;overflow:hidden;background:#0b0f1a;box-shadow:0 40px 100px rgba(0,0,0,.65);transform:translateY(28px) scale(.97);opacity:0;transition:transform .5s cubic-bezier(.16,.84,.44,1),opacity .4s ease;}
+/* Keep today's portrait posters side by side and scale them to fit the viewport. */
+.tev-modal{position:relative;width:min(96vw,900px);border-radius:18px;overflow:hidden;background:#0b0f1a;box-shadow:0 40px 100px rgba(0,0,0,.65);transform:translateY(28px) scale(.97);opacity:0;transition:transform .5s cubic-bezier(.16,.84,.44,1),opacity .4s ease;}
 #todayEventOverlay.show .tev-modal{transform:none;opacity:1;}
-.tev-modal img{display:block;width:100%;height:auto;}
+.tev-posters{display:flex;align-items:center;justify-content:center;gap:12px;padding:12px 12px 0;}
+.tev-poster-button{display:block;width:calc(50% - 6px);min-width:0;padding:0;border:0;background:transparent;cursor:zoom-in;}
+.tev-poster-button:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
+.tev-poster-button img{display:block;width:100%;max-height:min(72vh,720px);max-height:min(72dvh,720px);object-fit:contain;}
 .tev-close{position:absolute;top:10px;right:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.6);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s ease,transform .25s ease;-webkit-tap-highlight-color:transparent;}
 .tev-close:hover{background:var(--italian-red);transform:rotate(90deg);}
 .tev-note{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 16px;background:linear-gradient(135deg,#22a83f 0%,#178a2c 100%);color:#fff;font-family:var(--font-b);font-weight:600;font-size:.95rem;letter-spacing:.4px;text-align:center;}
+.event-poster-lightbox{position:fixed;inset:0;z-index:6100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.94);}
+.event-poster-lightbox.open{display:flex;}
+.event-poster-lightbox>img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;}
+.event-poster-lightbox-close{position:fixed;top:16px;right:16px;}
 @media(prefers-reduced-motion:reduce){.tev-modal{transition:opacity .3s ease;transform:none;}}
 </style>
 <script>
