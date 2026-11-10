@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mama Roma | Italian Restaurant, Café & BYOB Sports Bar in Mount Lavinia</title>
-<meta name="description" content="25% off at Mama Roma on 30–31 October 2026. Watch Pakistan vs Sri Lanka: Lahore 2026 Grand Finale on 31 October at our Mount Lavinia Sports Bar. Italian restaurant, café and BYOB.">
+<meta name="description" content="Enjoy 20% off with BOC credit cards or 10% off with BOC debit cards at Mama Roma, valid through 31 December 2026. Visit us in Mount Lavinia.">
 <meta name="author" content="Mama Roma">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://www.mamaromaitalian.com/">
@@ -54,10 +54,10 @@
       "hasMenu": "https://www.mamaromaitalian.com/#menu",
       "makesOffer": {
         "@type": "Offer",
-        "name": "25% off your total bill",
-        "description": "25% off your total bill at Mama Roma on 30 and 31 October 2026.",
-        "validFrom": "2026-10-30",
-        "validThrough": "2026-10-31",
+        "name": "BOC credit and debit card discounts",
+        "description": "20% off the total bill with BOC credit cards and 10% off the total bill with BOC debit cards at Mama Roma. Terms and conditions apply.",
+        "validFrom": "2026-11-10",
+        "validThrough": "2026-12-31",
         "seller": {"@id": "https://www.mamaromaitalian.com/#restaurant"}
       },
       "sameAs": [
@@ -73,16 +73,6 @@
       "name": "Mama Roma",
       "publisher": {"@id": "https://www.mamaromaitalian.com/#restaurant"},
       "inLanguage": "en"
-    },
-    {
-      "@type": "Event",
-      "@id": "https://www.mamaromaitalian.com/#pakistan-sri-lanka-grand-finale-2026",
-      "name": "Pakistan vs Sri Lanka Grand Finale — Lahore 2026",
-      "description": "Watch the Pakistan vs Sri Lanka Grand Finale live at Mama Roma Sports Bar in Mount Lavinia on 31 October 2026.",
-      "startDate": "2026-10-31",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "location": {"@id": "https://www.mamaromaitalian.com/#restaurant"},
-      "organizer": {"@id": "https://www.mamaromaitalian.com/#restaurant"}
     }
   ]
 }
@@ -122,7 +112,7 @@
 <meta property="og:type" content="restaurant.restaurant">
 <meta property="og:site_name" content="Mama Roma">
 <meta property="og:title" content="Mama Roma Authentic Italian Cuisine - Café & Sport Bar | Mount Lavinia, Colombo">
-<meta property="og:description" content="25% off your total bill on 30–31 October 2026. Watch Pakistan vs Sri Lanka: Lahore 2026 Grand Finale at Mama Roma Sports Bar on 31 October.">
+<meta property="og:description" content="Enjoy 20% off with BOC credit cards or 10% off with BOC debit cards at Mama Roma, valid through 31 December 2026.">
 <meta property="og:image" content="https://www.mamaromaitalian.com/image/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -134,7 +124,7 @@
 <!-- Twitter card tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mama Roma Authentic Italian Cuisine - Café & Sport Bar | Mount Lavinia, Colombo">
-<meta name="twitter:description" content="25% off your total bill on 30–31 October 2026. Watch Pakistan vs Sri Lanka: Lahore 2026 Grand Finale at Mama Roma Sports Bar on 31 October.">
+<meta name="twitter:description" content="Enjoy 20% off with BOC credit cards or 10% off with BOC debit cards at Mama Roma, valid through 31 December 2026.">
 <meta name="twitter:image" content="https://www.mamaromaitalian.com/image/og-image.jpg">
 <meta name="twitter:image:alt" content="Mama Roma Authentic Italian Cuisine, Mount Lavinia">
 
@@ -3303,15 +3293,12 @@ function closeBarSoon(){
 // HOW TO ADD A NEW POSTER (VS Code):
 //   1. Drop the image into the  image/events/  folder.
 //   2. Copy one line below, paste it on a new line, change date / image / title.
-//      date    = the day it shows as a popup after the preloader (YYYY-MM-DD, Sri Lanka time)
+//      date    = the day it shows as a popup, or startDate/endDate for a date range (Sri Lanka time)
 //      note    = optional text under the popup poster
-// Old posters never show again (the popup only appears on the poster's date).
+// Old posters never show again after their date or date range ends.
 // Test any poster on any day:  open the site with  ?event=preview
 var EVENT_POSTERS = [
-  { date:'2026-10-30', image:'image/promo.jpeg', title:'25% OFF Promo at MAMA ROMA', when:'30th & 31st October', note:'25% off your total bill · 30th & 31st October' },
-  { date:'2026-10-31', image:'image/promo.jpeg', title:'25% OFF Promo at MAMA ROMA', when:'30th & 31st October', note:'25% off your total bill · 30th & 31st October' },
-  { date:'2026-10-31', image:'image/Mama Roma Cricket Grand Finale (1).png', title:'Pakistan vs Sri Lanka Grand Finale', when:'Today at Mama Roma Sports Bar' }
-  // { date:'2026-11-05', image:'image/events/2026-11-05-match.jpg', title:'Match Night', when:'Thursday 5 November · 7:00 PM', note:'FREE BYOB — enjoy the match with Italian taste' },
+  { startDate:'2026-11-10', endDate:'2026-12-31', image:'image/mama_roma_boc_facebook_feed_1080x1350.jpg', title:'BOC Cards Offer at Mama Roma', when:'Valid until 31 December 2026', note:'20% off the total bill with BOC credit cards · 10% off with BOC debit cards' }
 ];
 
 function colomboToday(){
@@ -3324,6 +3311,7 @@ function colomboToday(){
 function showPoster(ev){
   var ov=document.getElementById('todayEventOverlay');
   if(!ov||!ev||!ev.length) return;
+  ov.querySelector('.tev-modal').classList.toggle('single-poster',ev.length===1);
   var posters=document.getElementById('tevPosters');
   posters.replaceChildren();
   ev.forEach(function(poster){
@@ -3340,7 +3328,7 @@ function showPoster(ev){
     posters.appendChild(button);
   });
   var notedPoster=ev.find(function(poster){return poster.note;});
-  document.getElementById('tevNote').textContent=notedPoster?notedPoster.note:'Free BYOB — enjoy the match with Italian taste';
+  document.getElementById('tevNote').textContent=notedPoster?notedPoster.note:'BOC card discounts available until 31 December 2026';
   ov.setAttribute('aria-label',ev.map(function(poster){return poster.title;}).filter(Boolean).join(' and ')||'Event posters');
   ov.classList.add('open');
   document.body.style.overflow='hidden';
@@ -3378,14 +3366,19 @@ document.addEventListener('keydown',function(e){
 (function(){
   var today=colomboToday();
   var preview=/[?&](event|cricket)=preview/.test(location.search);
-  var upcoming=EVENT_POSTERS.filter(function(e){return e.date>=today;})
-                            .sort(function(a,b){return a.date<b.date?-1:1;});
+  function posterStartDate(poster){return poster.startDate||poster.date;}
+  function posterEndDate(poster){return poster.endDate||poster.date||posterStartDate(poster);}
+  function posterIsActiveOn(poster,date){
+    return posterStartDate(poster)<=date&&posterEndDate(poster)>=date;
+  }
+  var upcoming=EVENT_POSTERS.filter(function(e){return posterEndDate(e)>=today;})
+                            .sort(function(a,b){return posterStartDate(a)<posterStartDate(b)?-1:1;});
 
-  // Auto popup after the preloader (only for a poster whose date is today)
-  var todays=EVENT_POSTERS.filter(function(e){return e.date===today;});
+  // Auto popup after the preloader while a poster's date or date range is active.
+  var todays=EVENT_POSTERS.filter(function(e){return posterIsActiveOn(e,today);});
   if(preview&&!todays.length){
-    var previewDate=upcoming.length?upcoming[0].date:EVENT_POSTERS[EVENT_POSTERS.length-1].date;
-    todays=EVENT_POSTERS.filter(function(e){return e.date===previewDate;});
+    var previewDate=upcoming.length?posterStartDate(upcoming[0]):posterStartDate(EVENT_POSTERS[EVENT_POSTERS.length-1]);
+    todays=EVENT_POSTERS.filter(function(e){return posterIsActiveOn(e,previewDate);});
   }
   if(!todays.length) return;
   var pre=document.getElementById('preloader'), fired=false;
@@ -4527,12 +4520,12 @@ function closeMenuModal(){
   </div>
 </div>
 
-<!-- EVENT POSTER POPUP — auto-shown after the preloader on the poster's date (edit EVENT_POSTERS in the script) -->
-<div id="todayEventOverlay" role="dialog" aria-modal="true" aria-label="Event poster" onclick="if(event.target===this)closeTodayEvent();">
+<!-- OFFER POSTER POPUP — auto-shown after the preloader while its date range is active -->
+<div id="todayEventOverlay" role="dialog" aria-modal="true" aria-label="BOC card offer" onclick="if(event.target===this)closeTodayEvent();">
   <div class="tev-modal">
     <button type="button" class="tev-close" onclick="closeTodayEvent()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     <div id="tevPosters" class="tev-posters"></div>
-    <div class="tev-note"><i class="fa-solid fa-wine-bottle"></i> <span id="tevNote">Free BYOB &mdash; enjoy the match with Italian taste</span></div>
+    <div class="tev-note"><i class="fa-solid fa-credit-card"></i> <span id="tevNote">BOC card discounts available until 31 December 2026</span></div>
   </div>
 </div>
 <div id="eventPosterLightbox" class="event-poster-lightbox" role="dialog" aria-modal="true" aria-label="Event poster" onclick="if(event.target===this)closeExpandedPoster();">
@@ -5024,13 +5017,16 @@ video{object-fit:cover;}
 #todayEventOverlay{position:fixed;inset:0;z-index:6000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(8,5,3,.88);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .35s ease;}
 #todayEventOverlay.open{display:flex;}
 #todayEventOverlay.show{opacity:1;}
-/* Keep today's portrait posters side by side and scale them to fit the viewport. */
-.tev-modal{position:relative;width:min(96vw,900px);border-radius:18px;overflow:hidden;background:#0b0f1a;box-shadow:0 40px 100px rgba(0,0,0,.65);transform:translateY(28px) scale(.97);opacity:0;transition:transform .5s cubic-bezier(.16,.84,.44,1),opacity .4s ease;}
+/* Use the available space for a single poster, while keeping multiple posters side by side. */
+.tev-modal{position:relative;width:min(96vw,760px);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);border-radius:18px;overflow:hidden;background:#0b0f1a;box-shadow:0 40px 100px rgba(0,0,0,.65);transform:translateY(28px) scale(.97);opacity:0;transition:transform .5s cubic-bezier(.16,.84,.44,1),opacity .4s ease;}
+.tev-modal.single-poster{width:min(96vw,calc((100vh - 150px)*.4 + 24px));width:min(96vw,calc((100dvh - 150px)*.4 + 24px));}
 #todayEventOverlay.show .tev-modal{transform:none;opacity:1;}
 .tev-posters{display:flex;align-items:center;justify-content:center;gap:12px;padding:12px 12px 0;}
 .tev-poster-button{display:block;width:calc(50% - 6px);min-width:0;padding:0;border:0;background:transparent;cursor:zoom-in;}
+.tev-poster-button:only-child{width:100%;}
+.tev-poster-button:only-child img{aspect-ratio:2/5;object-fit:cover;}
 .tev-poster-button:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
-.tev-poster-button img{display:block;width:100%;max-height:min(72vh,720px);max-height:min(72dvh,720px);object-fit:contain;}
+.tev-poster-button img{display:block;width:100%;max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);object-fit:contain;}
 .tev-close{position:absolute;top:10px;right:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.6);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s ease,transform .25s ease;-webkit-tap-highlight-color:transparent;}
 .tev-close:hover{background:var(--italian-red);transform:rotate(90deg);}
 .tev-note{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 16px;background:linear-gradient(135deg,#22a83f 0%,#178a2c 100%);color:#fff;font-family:var(--font-b);font-weight:600;font-size:.95rem;letter-spacing:.4px;text-align:center;}
