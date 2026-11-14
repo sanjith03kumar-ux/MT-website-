@@ -3300,6 +3300,8 @@ function closeBarSoon(){
 var EVENT_POSTERS = [
   { startDate:'2026-11-10', endDate:'2026-12-31', image:'image/mama_roma_boc_facebook_feed_1080x1350.jpg', title:'BOC Cards Offer at Mama Roma', when:'Valid until 31 December 2026', note:'20% off the total bill with BOC credit cards · 10% off with BOC debit cards' }
 ];
+var PICME_ANNOUNCEMENT_START='2026-11-14';
+var PICME_ANNOUNCEMENT_END='2026-12-31';
 
 function colomboToday(){
   try{
@@ -3308,11 +3310,20 @@ function colomboToday(){
     return g('year')+'-'+g('month')+'-'+g('day');
   }catch(e){return '';}
 }
+function picMeAnnouncementIsActive(){
+  var today=colomboToday();
+  return today>=PICME_ANNOUNCEMENT_START&&today<=PICME_ANNOUNCEMENT_END;
+}
 function showPoster(ev){
   var ov=document.getElementById('todayEventOverlay');
   if(!ov||!ev||!ev.length) return;
-  ov.querySelector('.tev-modal').classList.toggle('single-poster',ev.length===1);
+  var modal=ov.querySelector('.tev-modal');
+  modal.classList.remove('picme-announcement');
+  modal.classList.toggle('single-poster',ev.length===1);
   var posters=document.getElementById('tevPosters');
+  posters.hidden=false;
+  document.getElementById('tevNote').parentElement.hidden=false;
+  document.getElementById('tevDeliveryAnnouncement').hidden=true;
   posters.replaceChildren();
   ev.forEach(function(poster){
     var button=document.createElement('button');
@@ -3330,6 +3341,20 @@ function showPoster(ev){
   var notedPoster=ev.find(function(poster){return poster.note;});
   document.getElementById('tevNote').textContent=notedPoster?notedPoster.note:'BOC card discounts available until 31 December 2026';
   ov.setAttribute('aria-label',ev.map(function(poster){return poster.title;}).filter(Boolean).join(' and ')||'Event posters');
+  ov.classList.add('open');
+  document.body.style.overflow='hidden';
+  requestAnimationFrame(function(){requestAnimationFrame(function(){ov.classList.add('show');});});
+}
+function showPicMeAnnouncement(){
+  var ov=document.getElementById('todayEventOverlay');
+  if(!ov) return;
+  var modal=ov.querySelector('.tev-modal');
+  modal.classList.remove('single-poster');
+  modal.classList.add('picme-announcement');
+  document.getElementById('tevPosters').hidden=true;
+  document.getElementById('tevNote').parentElement.hidden=true;
+  document.getElementById('tevDeliveryAnnouncement').hidden=false;
+  ov.setAttribute('aria-label','Mama Roma on Pic Me Foods');
   ov.classList.add('open');
   document.body.style.overflow='hidden';
   requestAnimationFrame(function(){requestAnimationFrame(function(){ov.classList.add('show');});});
@@ -3374,15 +3399,16 @@ document.addEventListener('keydown',function(e){
   var upcoming=EVENT_POSTERS.filter(function(e){return posterEndDate(e)>=today;})
                             .sort(function(a,b){return posterStartDate(a)<posterStartDate(b)?-1:1;});
 
-  // Auto popup after the preloader while a poster's date or date range is active.
+  // Auto popup after the preloader for an active announcement or event poster.
   var todays=EVENT_POSTERS.filter(function(e){return posterIsActiveOn(e,today);});
   if(preview&&!todays.length){
     var previewDate=upcoming.length?posterStartDate(upcoming[0]):posterStartDate(EVENT_POSTERS[EVENT_POSTERS.length-1]);
     todays=EVENT_POSTERS.filter(function(e){return posterIsActiveOn(e,previewDate);});
   }
-  if(!todays.length) return;
+  var showPicMe=picMeAnnouncementIsActive();
+  if(!todays.length&&!showPicMe) return;
   var pre=document.getElementById('preloader'), fired=false;
-  function go(){ if(fired) return; fired=true; setTimeout(function(){showPoster(todays);},450); }  // let the preloader fade out first
+  function go(){ if(fired) return; fired=true; setTimeout(function(){if(showPicMe)showPicMeAnnouncement();else showPoster(todays);},450); }  // let the preloader fade out first
   if(!pre||pre.classList.contains('hidden')){ go(); return; }
   var mo=new MutationObserver(function(){ if(pre.classList.contains('hidden')){ mo.disconnect(); go(); } });
   mo.observe(pre,{attributes:true,attributeFilter:['class']});
@@ -4526,6 +4552,22 @@ function closeMenuModal(){
     <button type="button" class="tev-close" onclick="closeTodayEvent()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     <div id="tevPosters" class="tev-posters"></div>
     <div class="tev-note"><i class="fa-solid fa-credit-card"></i> <span id="tevNote">BOC card discounts available until 31 December 2026</span></div>
+    <div id="tevDeliveryAnnouncement" class="tev-delivery-announcement" hidden>
+      <button type="button" class="tev-boc-poster-button" onclick="showExpandedPoster('image/mama_roma_boc_facebook_feed_1080x1350.jpg','BOC card offer at Mama Roma')" aria-label="View the BOC offer poster full size">
+        <img class="tev-boc-poster" src="image/mama_roma_boc_facebook_feed_1080x1350.jpg" alt="BOC offer at Mama Roma: 20% off with credit cards and 10% off with debit cards, valid until 31 December 2026. Terms and conditions apply." decoding="async">
+      </button>
+      <div class="tev-delivery-copy">
+        <i class="fa-solid fa-motorcycle tev-delivery-icon" aria-hidden="true"></i>
+        <p class="tev-delivery-eyebrow">BOC OFFER · FOOD DELIVERY</p>
+        <h2>Now open on Pick Me Foods</h2>
+        <p class="tev-picme-copy">Search <strong>MAMA ROMA</strong> on your mobile and get your Italian food delivered to your doorstep.</p>
+        <div class="tev-boc-details" aria-label="BOC offer details">
+          <p><strong>BOC Credit Cards</strong><span>20% off the total bill</span></p>
+          <p><strong>BOC Debit Cards</strong><span>10% off the total bill</span></p>
+          <p class="tev-boc-validity">Valid until 31 December 2026. Terms and conditions apply.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div id="eventPosterLightbox" class="event-poster-lightbox" role="dialog" aria-modal="true" aria-label="Event poster" onclick="if(event.target===this)closeExpandedPoster();">
@@ -5030,6 +5072,29 @@ video{object-fit:cover;}
 .tev-close{position:absolute;top:10px;right:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.6);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s ease,transform .25s ease;-webkit-tap-highlight-color:transparent;}
 .tev-close:hover{background:var(--italian-red);transform:rotate(90deg);}
 .tev-note{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 16px;background:linear-gradient(135deg,#22a83f 0%,#178a2c 100%);color:#fff;font-family:var(--font-b);font-weight:600;font-size:.95rem;letter-spacing:.4px;text-align:center;}
+.tev-delivery-announcement[hidden],.tev-note[hidden],.tev-posters[hidden]{display:none;}
+.tev-modal.picme-announcement{width:min(94vw,900px);max-height:calc(100dvh - 32px);padding:24px;background:linear-gradient(145deg,#19140f,#0b0f1a);border:1px solid rgba(212,175,55,.35);}
+.tev-delivery-announcement{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center;gap:24px;color:#fff;font-family:var(--font-b);}
+.tev-boc-poster-button{display:block;width:100%;padding:0;border:0;border-radius:12px;background:transparent;cursor:zoom-in;}
+.tev-boc-poster-button:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
+.tev-boc-poster{display:block;width:100%;max-height:calc(100dvh - 88px);border-radius:12px;object-fit:contain;}
+.tev-delivery-copy{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:8px 4px;}
+.tev-delivery-icon{color:var(--gold-light);font-size:2rem;}
+.tev-delivery-eyebrow{margin:0;color:var(--gold-light);font-size:.72rem;font-weight:700;letter-spacing:1.5px;}
+.tev-delivery-announcement h2{margin:0;font-family:var(--font-h);font-size:clamp(1.45rem,5vw,2rem);line-height:1.2;}
+.tev-picme-copy{margin:0;color:rgba(255,255,255,.82);font-size:.98rem;line-height:1.6;}
+.tev-delivery-announcement strong{color:var(--gold-light);letter-spacing:.7px;}
+.tev-boc-details{width:100%;padding-top:10px;border-top:1px solid rgba(255,255,255,.16);}
+.tev-boc-details p{display:flex;justify-content:space-between;gap:12px;margin:0;padding:7px 0;color:rgba(255,255,255,.86);font-size:.88rem;line-height:1.4;}
+.tev-boc-details p strong{white-space:nowrap;}
+.tev-boc-details .tev-boc-validity{display:block;padding-top:10px;color:rgba(255,255,255,.65);font-size:.78rem;}
+@media(max-width:640px){
+  .tev-modal.picme-announcement{width:min(94vw,500px);max-height:calc(100dvh - 24px);padding:16px;overflow-y:auto;}
+  .tev-delivery-announcement{grid-template-columns:1fr;gap:12px;}
+  .tev-boc-poster{max-height:38dvh;}
+  .tev-delivery-copy{align-items:center;gap:9px;padding:0 2px 4px;text-align:center;}
+  .tev-boc-details p{font-size:.82rem;}
+}
 .event-poster-lightbox{position:fixed;inset:0;z-index:6100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.94);}
 .event-poster-lightbox.open{display:flex;}
 .event-poster-lightbox>img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;}
